@@ -75,6 +75,13 @@ public class SpringRecital22 {
     public static Show dfBbTtKcPc() {
         Show show = new Show().setName("Spring Recital 2022 - DF BB TT KC PC");
 
+        MediaCue dfMoVid = mediaCue("DF Mo (vid): The Tiki, Tiki, Tiki Room", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\DF Mo.mp4")
+                .setName("DF Mon Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(dfMoVid);
+
+        nextIndex();
         MediaCue ttWe = (MediaCue) mediaCue("TT We: Hakuna Matata", new MediaResource()
                 .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Leasa\\Twinkle Toes We - Hakuna Matata.mp3")
                 .setName("Hakuna Matata"));

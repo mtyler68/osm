@@ -55,6 +55,10 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
     @Setter
     private Duration fadeOut;
 
+    @Getter
+    @Setter
+    private MediaResource.MediaType mediaType;
+
     private BooleanProperty videoDisplayed = new SimpleBooleanProperty(false);
 
     public ReadOnlyBooleanProperty videoDisplayedProperty() {
@@ -245,6 +249,8 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
 
         setFadeIn(fromTimeDuration(resource.getFadeIn()));
         setFadeOut(fromTimeDuration(resource.getFadeOut()));
+
+        setMediaType(resource.getType());
     }
 
     @Override

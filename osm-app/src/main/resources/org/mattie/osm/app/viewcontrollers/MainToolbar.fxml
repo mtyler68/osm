@@ -34,6 +34,12 @@
       <ToggleButton fx:id="dmxToggleButton" focusTraversable="false" mnemonicParsing="false" text="DMX (off)" />
       <ToggleSwitch text="DMX" />
       <Separator focusTraversable="false" orientation="VERTICAL" />
+      <SplitMenuButton fx:id="toggleScreenButton" focusTraversable="false" mnemonicParsing="false" text="Screen">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </SplitMenuButton>
       <Button fx:id="fullscreenButton" focusTraversable="false" mnemonicParsing="false" text="Fullscreen" />
   </items>
 </ToolBar>

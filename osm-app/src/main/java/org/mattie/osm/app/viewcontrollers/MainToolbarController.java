@@ -44,6 +44,9 @@ public class MainToolbarController {
     @FXML
     public Button nextCueButton;
 
+    @FXML
+    public SplitMenuButton toggleScreenButton;
+
     private GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
 
     @FXML
@@ -85,5 +88,9 @@ public class MainToolbarController {
         Action nextCueAction = ActionMap.action(ActionId.NEXT_CUE);
         ActionUtils.configureButton(nextCueAction, nextCueButton);
 
+        // Screen Toggle
+        toggleScreenButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        Action toggleScreenAction = ActionMap.action(ActionId.TOGGLE_VIDEO);
+        ActionUtils.configureButton(toggleScreenAction, toggleScreenButton);
     }
 }

@@ -57,4 +57,5 @@ public class WindowActions {
         ShowViewModel showViewModel = evt.getShowViewModel();
         primaryStage.setTitle(showViewModel.getName());
     }
+
 }

@@ -24,4 +24,6 @@ public final class ActionId {
     public final static String PLAY_FROM_SELECTED = "PLAY_FROM_SELECTED";
 
     public final static String NEXT_CUE = "NEXT_CUE";
+
+    public final static String TOGGLE_VIDEO = "TOGGLE_VIDEO";
 }
