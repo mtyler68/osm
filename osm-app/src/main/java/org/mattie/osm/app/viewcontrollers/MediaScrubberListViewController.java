@@ -61,19 +61,17 @@ public class MediaScrubberListViewController extends AbstractViewController {
 
                     final Node scrubber = createScrubber(mcvm);
 
-                    mcvm.getMediaPlayer().statusProperty().addListener((ov, oldVal, newVal) -> {
-
+                    mcvm.stateProperty().addListener((ov, oldVal, newVal) -> {
                         switch (newVal) {
-                            case PLAYING:
                             case PAUSED:
+                            case PLAYING:
                                 log.debug("{}: (playing or paused): {}", mcvm.getName(), mcvm);
                                 if (!scrubberList.getChildren().contains(scrubber)) {
                                     scrubberList.getChildren().add(scrubber);
                                 }
                                 break;
-                            case HALTED:
-                                log.debug("{}: (halted): {}", mcvm.getName(), mcvm);
-                                break;
+
+                            case FINISHED:
                             case STOPPED:
                                 log.debug("{}: (stopped): {}", mcvm.getName(), mcvm);
                                 if (scrubberList.getChildren().contains(scrubber)) {
@@ -82,6 +80,28 @@ public class MediaScrubberListViewController extends AbstractViewController {
                                 break;
                         }
                     });
+
+//                    mcvm.getMediaPlayer().statusProperty().addListener((ov, oldVal, newVal) -> {
+//
+//                        switch (newVal) {
+//                            case PLAYING:
+//                            case PAUSED:
+//                                log.debug("{}: (playing or paused): {}", mcvm.getName(), mcvm);
+//                                if (!scrubberList.getChildren().contains(scrubber)) {
+//                                    scrubberList.getChildren().add(scrubber);
+//                                }
+//                                break;
+//                            case HALTED:
+//                                log.debug("{}: (halted): {}", mcvm.getName(), mcvm);
+//                                break;
+//                            case STOPPED:
+//                                log.debug("{}: (stopped): {}", mcvm.getName(), mcvm);
+//                                if (scrubberList.getChildren().contains(scrubber)) {
+//                                    scrubberList.getChildren().remove(scrubber);
+//                                }
+//                                break;
+//                        }
+//                    });
                 }));
     }
 

@@ -106,15 +106,19 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
     }
 
     public void buildMediaPlayer() {
-        File mediaFile = new File(getSource());
-        Media media = new Media(mediaFile.toURI().toString());
-        setMediaPlayer(new MediaPlayer(media));
+        log.debug("{}: buildMediaPlayer(): {}", getName(), this);
 
-        getMediaPlayer().setVolume(getVolume());
-        getMediaPlayer().setStartTime(getStartAt());
+        if (mediaPlayer == null) {
+            File mediaFile = new File(getSource());
+            Media media = new Media(mediaFile.toURI().toString());
+            setMediaPlayer(new MediaPlayer(media));
 
-        if (getStopAt() != null) {
-            getMediaPlayer().setStopTime(getStopAt());
+            getMediaPlayer().setVolume(getVolume());
+            getMediaPlayer().setStartTime(getStartAt());
+
+            if (getStopAt() != null) {
+                getMediaPlayer().setStopTime(getStopAt());
+            }
         }
 
 //        getMediaPlayer().currentTimeProperty().addListener((ov, oldVal, newVal) -> {
@@ -248,6 +252,15 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
         return true;
     }
 
+    /**
+     * Instructs cue to finish immediately and trigger lifecycle events.
+     */
+    public void end() {
+        getMediaPlayer().stop();
+        getAnimation().get().stop();
+        finished();
+    }
+
     @Override
     public void fadeOut(Duration dur) {
 
@@ -255,9 +268,7 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
                 new KeyFrame(Duration.ZERO, new KeyValue(getMediaPlayer().volumeProperty(), getMediaPlayer().getVolume())),
                 new KeyFrame(dur, new KeyValue(getMediaPlayer().volumeProperty(), 0, Interpolator.EASE_BOTH)));
         timeline.setOnFinished((evt) -> {
-            getMediaPlayer().stop();
-            getAnimation().get().stop();
-            finished();
+            end();
         });
 
         stateProperty().addListener((ov, oldVal, newVal) -> {

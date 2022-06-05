@@ -132,8 +132,9 @@ public class ShowViewModel {
             case STOPPED:
                 cueIndex.set(0);
                 resetCues();
-                buildAnimation();
 
+            // TODO: No need to build animations after load unless cue is edited. Can remove in the future
+            //buildAnimation();
             case PAUSED:
             case WAITING:
                 startCurrent();
@@ -145,7 +146,7 @@ public class ShowViewModel {
 
         // Stop current cue first
         getCurrCueViewModel().ifPresent((cvm) -> {
-            if (cvm.getState() != CueState.STOPPED) {
+            if (cvm.getState() != CueState.STOPPED || cvm.getState() != CueState.FINISHED) {
                 cvm.stop();
             }
         });

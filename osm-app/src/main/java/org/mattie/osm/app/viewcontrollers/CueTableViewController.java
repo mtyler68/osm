@@ -1,21 +1,14 @@
 package org.mattie.osm.app.viewcontrollers;
 
 import java.util.List;
-import javafx.beans.value.ChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
-import javafx.util.Duration;
 import javax.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.controlsfx.control.action.Action;
@@ -29,7 +22,6 @@ import org.mattie.osm.app.events.ShowOpenedEvent;
 import org.mattie.osm.app.viewmodel.CueState;
 import org.mattie.osm.app.viewmodel.CueViewModel;
 import org.mattie.osm.app.viewmodel.GroupCueViewModel;
-import org.mattie.osm.app.viewmodel.MediaCueViewModel;
 import org.mattie.osm.app.viewmodel.ShowViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -81,16 +73,6 @@ public class CueTableViewController {
     @FXML
     public MenuItem playFromSelectedMenuItem;
 
-    @FXML
-    public ProgressBar mediaProgressBar;
-
-    @FXML
-    public SplitMenuButton fadeButton;
-
-    private MediaCueViewModel lastMediaCueViewModel;
-
-    private ChangeListener<Duration> mediaChangeListener;
-
     @PostConstruct
     public void init() {
         ActionMap.register(this);
@@ -122,24 +104,6 @@ public class CueTableViewController {
             }
         });
 
-        mediaChangeListener = (ov, oldVal, newVal) -> {
-            double length = newVal.toSeconds();
-            if (lastMediaCueViewModel != null) {
-                length = lastMediaCueViewModel.getAnimation().get().getTotalDuration().toSeconds();
-            }
-            mediaProgressBar.setProgress(newVal.toSeconds() / length);
-        };
-
-        mediaProgressBar.setOnMousePressed((evt) -> {
-            log.debug("mediaProgressBar.mousePressed(): {}, mediaProgressBar.width={}", evt, mediaProgressBar.getWidth());
-            if (lastMediaCueViewModel != null) {
-                double totalDur = lastMediaCueViewModel.getAnimation().get().getTotalDuration().toSeconds();
-                double time = evt.getX() / mediaProgressBar.getWidth();
-                lastMediaCueViewModel.jumpTo(Duration.seconds(time * totalDur));
-            }
-        });
-
-        fadeButton.setOnAction(new FadeEventHandler(5));
     }
 
     @ActionProxy(id = ActionId.PLAY_FROM_SELECTED, text = "Play from selected")
@@ -158,18 +122,6 @@ public class CueTableViewController {
 
         loadCueTable(root, showViewModel.getCueViewModels());
 
-        showViewModel.currentCueViewModel().addListener((ov, oldVal, newVal) -> {
-            if (lastMediaCueViewModel != null) {
-                lastMediaCueViewModel.getAnimation().get().currentTimeProperty().removeListener(mediaChangeListener);
-            }
-            lastMediaCueViewModel = null;
-
-            if (newVal instanceof MediaCueViewModel) {
-                MediaCueViewModel cvm = (MediaCueViewModel) newVal;
-                cvm.getAnimation().get().currentTimeProperty().addListener(mediaChangeListener);
-                lastMediaCueViewModel = cvm;
-            }
-        });
     }
 
     public void loadCueTable(TreeItem parent, List<CueViewModel> viewModels) {
@@ -186,6 +138,7 @@ public class CueTableViewController {
                     cueViewModel.stateProperty().addListener((ov, oldVal, newVal) -> {
                         switch ((CueState) newVal) {
                             case PLAYING:
+                                tableView.getSelectionModel().clearSelection();
                                 tableView.getSelectionModel().select(node);
                                 break;
                         }
@@ -196,23 +149,5 @@ public class CueTableViewController {
     @EventListener
     public void handleReset(ResetEvent evt) {
         tableView.getSelectionModel().clearSelection();
-    }
-
-    private void fade(double dur) {
-        if (lastMediaCueViewModel != null && lastMediaCueViewModel.getState() == CueState.PLAYING) {
-            lastMediaCueViewModel.fadeOut(Duration.seconds(dur));
-        }
-    }
-
-    @RequiredArgsConstructor
-    public class FadeEventHandler implements EventHandler<ActionEvent> {
-
-        private final double duration;
-
-        @Override
-        public void handle(ActionEvent t) {
-            fade(duration);
-        }
-
     }
 }

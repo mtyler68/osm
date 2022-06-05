@@ -14,7 +14,7 @@ import org.mattie.osm.model.NoteCue;
  * @author Matt
  */
 @Slf4j
-@ToString(callSuper = true, of = {"text"})
+@ToString(callSuper = true, of = {"text", "clearNotes"})
 public class NoteCueViewModel extends DisplayableCueViewModel<NoteCue> {
 
     @Setter
