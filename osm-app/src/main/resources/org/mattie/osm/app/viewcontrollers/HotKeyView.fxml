@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mattie.osm.app.viewcontrollers.HotKeyViewController">
+   <children>
+      <TitledPane animated="false" text="Hot Keys" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <TableView fx:id="hotKeyTable">
+              <columns>
+                <TableColumn fx:id="keyColumn" prefWidth="75.0" text="Key" />
+                <TableColumn fx:id="descColumn" prefWidth="75.0" text="Description" />
+              </columns>
+            </TableView>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

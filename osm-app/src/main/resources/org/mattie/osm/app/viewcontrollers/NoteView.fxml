@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+
+<TableView fx:id="noteTable" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mattie.osm.app.viewcontrollers.NoteViewController">
+  <columns>
+    <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
+    <TableColumn fx:id="noteColumn" prefWidth="220.0" text="Note" />
+  </columns>
+</TableView>

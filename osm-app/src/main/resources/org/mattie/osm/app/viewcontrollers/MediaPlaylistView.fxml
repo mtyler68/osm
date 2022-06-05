@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="playlistTable" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="org.mattie.osm.app.viewcontrollers.MediaPlaylistViewController">
+  <columns>
+      <TableColumn fx:id="nameColumn" editable="false" prefWidth="75.0" sortable="false" text="Name" />
+    <TableColumn fx:id="stateColumn" editable="false" prefWidth="75.0" sortable="false" text="State" />
+      <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Type" />
+      <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Length" />
+      <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Current" />
+  </columns>
+</TableView>

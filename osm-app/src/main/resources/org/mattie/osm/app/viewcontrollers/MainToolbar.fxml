@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import org.controlsfx.control.ToggleSwitch?>
+
+<ToolBar xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mattie.osm.app.viewcontrollers.MainToolbarController">
+  <items>
+      <SplitMenuButton fx:id="playButton" focusTraversable="false" mnemonicParsing="false" text="Play">
+        <items>
+            <MenuItem mnemonicParsing="false" text="Restart cue" />
+          <MenuItem mnemonicParsing="false" text="Restart show" />
+        </items>
+      </SplitMenuButton>
+      <Button fx:id="pauseButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Pause" />
+      <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Stop" />
+      <Separator focusTraversable="false" orientation="VERTICAL" />
+      <Button fx:id="nextCueButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Next Cue" />
+      <SplitMenuButton focusTraversable="false" mnemonicParsing="false" text="Fade out (2s)">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Fade out (1s)" />
+          <MenuItem mnemonicParsing="false" text="Fade out (3s)" />
+            <MenuItem mnemonicParsing="false" text="Fade out (4s)" />
+            <MenuItem mnemonicParsing="false" text="Fade out (5s)" />
+        </items>
+      </SplitMenuButton>
+      <Separator focusTraversable="false" orientation="VERTICAL" />
+    <Button fx:id="openButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Open" />
+      <Separator focusTraversable="false" orientation="VERTICAL" />
+      <ToggleButton fx:id="dmxToggleButton" focusTraversable="false" mnemonicParsing="false" text="DMX (off)" />
+      <ToggleSwitch text="DMX" />
+      <Separator focusTraversable="false" orientation="VERTICAL" />
+      <Button fx:id="fullscreenButton" focusTraversable="false" mnemonicParsing="false" text="Fullscreen" />
+  </items>
+</ToolBar>
