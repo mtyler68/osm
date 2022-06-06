@@ -8,7 +8,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mattie.osm.app.viewcontrollers.CueTableViewController">
    <children>
-      <TreeTableView fx:id="tableView" showRoot="false" VBox.vgrow="ALWAYS">
+      <TreeTableView fx:id="tableView" focusTraversable="false" showRoot="false" VBox.vgrow="ALWAYS">
         <columns>
           <TreeTableColumn fx:id="nameColumn" editable="false" prefWidth="75.0" sortable="false" text="Cue" />
             <TreeTableColumn fx:id="stateColumn" prefWidth="75.0" text="State" />

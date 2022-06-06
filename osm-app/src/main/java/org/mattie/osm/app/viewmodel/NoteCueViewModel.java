@@ -45,10 +45,12 @@ public class NoteCueViewModel extends DisplayableCueViewModel<NoteCue> {
         timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, (evt) -> {
             log.debug("{}: [display note]: {}", getName(), this);
             setDisplayed(true);
+            setDisplayed(false);
         }));
 
         // Padding
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(1), (evt) -> {
+
         }));
 
         //timeline.setOnFinished((evt) -> finished());

@@ -10,6 +10,7 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -46,8 +47,22 @@ public class ShowViewModel {
     private ObjectProperty<ObservableList<CueViewModel>> hotKeyCueViewModels
             = new SimpleObjectProperty<>(FXCollections.observableArrayList());
 
+    private ObjectProperty<Duration> totalDuration = new SimpleObjectProperty<>();
+
     public ShowViewModel(Show show, CueViewModelContext context) {
         read(show, context);
+    }
+
+    public ReadOnlyObjectProperty<Duration> totalDurationProperty() {
+        return totalDuration;
+    }
+
+    public void setTotalDuration(Duration totalDuration) {
+        this.totalDuration.set(totalDuration);
+    }
+
+    public Duration getTotalDuration() {
+        return totalDuration.get();
     }
 
     public ReadOnlyObjectProperty<CueViewModel> currentCueViewModel() {
@@ -95,6 +110,7 @@ public class ShowViewModel {
 
         // Prepare all animations
         buildAnimation();
+        setTotalDuration(calculateDuration());
         setState(CueState.WAITING);
     }
 
@@ -127,6 +143,10 @@ public class ShowViewModel {
      */
     public void play() {
         log.info("play(): {}", this);
+
+        // TODO: Need to add listeners to cues with media that load in the background in order to update totalDuration property.
+        setTotalDuration(calculateDuration());
+
         switch (getState()) {
 
             case STOPPED:
@@ -235,6 +255,13 @@ public class ShowViewModel {
                         }
                     }
                 });
+    }
+
+    private Duration calculateDuration() {
+        double total = getCueViewModels().stream()
+                .mapToDouble(cvm -> cvm.calculateDuration().toSeconds())
+                .sum();
+        return Duration.seconds(total);
     }
 
 }

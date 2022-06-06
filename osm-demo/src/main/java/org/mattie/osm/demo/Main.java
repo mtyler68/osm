@@ -37,6 +37,9 @@ public class Main {
         generateDemo(SpringRecital22.moanaScene1(), "2022_spring_recital_moana_sc1");
         generateDemo(SpringRecital22.cinderellaSc1(), "2022_spring_recital_cinderella_sc1");
         generateDemo(SpringRecital22.cinderellaSc2(), "2022_spring_recital_cinderella_sc2");
+
+        generateDemo(SpringRecital22.danceFunBoogieBabies(), "2022_spring_recital_dancefun_boogiebabies");
+        generateDemo(SpringRecital22.ttKcPc(), "2022_spring_recital_tt_kc_pc");
     }
 
     private static void generateDemo(Show show, String title) throws IOException {

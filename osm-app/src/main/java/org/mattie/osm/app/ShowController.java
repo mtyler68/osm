@@ -40,7 +40,7 @@ public class ShowController {
 
         // Configure KeyCode to actions
         keyCodeToActionIdMap.put(KeyCode.SPACE, ActionId.PLAY_PAUSE);
-        keyCodeToActionIdMap.put(KeyCode.END, ActionId.STOP);
+        keyCodeToActionIdMap.put(KeyCode.END, ActionId.NEXT_CUE);
     }
 
     @ActionProxy(id = ActionId.PLAY, text = "Play", graphic = "font>FontAwesome|PLAY")
@@ -106,7 +106,7 @@ public class ShowController {
     @EventListener
     public void showOpenedHandler(ShowOpenedEvent evt) {
         this.showViewModel = evt.getShowViewModel();
-        log.info("showOpenedHandler(): showViewModel={}", showViewModel);
+        log.debug("showOpenedHandler(): showViewModel={}", showViewModel);
 
         showViewModel.stateProperty().addListener((ov, oldVal, newVal) -> {
             setShowState(newVal);

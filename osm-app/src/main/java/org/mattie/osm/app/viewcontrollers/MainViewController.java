@@ -32,7 +32,15 @@ public class MainViewController {
     @FXML
     public Label statusLabel;
 
+    @FXML
+    public Label lengthLabel;
+
+    @FXML
+    public Label remainingLabel;
+
     private FadeTransition fadeTransition;
+
+    private Duration totalDuration;
 
     @FXML
     public void initialize() {
@@ -63,5 +71,15 @@ public class MainViewController {
                 statusLabel.setTextFill(Paint.valueOf("black"));
             }
         });
+
+        showViewModel.totalDurationProperty().addListener((ov, oldVal, newVal) -> {
+            lengthLabel.setText(formatDuration(newVal));
+        });
+
+    }
+
+    protected String formatDuration(Duration source) {
+        java.time.Duration d = java.time.Duration.ofMillis((int) source.toMillis());
+        return String.format("%02d:%02d:%02d.%d", d.toHoursPart(), d.toMinutesPart(), d.toSecondsPart(), d.toMillisPart() / 100);
     }
 }

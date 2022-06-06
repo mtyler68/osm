@@ -211,12 +211,12 @@ public abstract class CueViewModel<C extends Cue> {
      * execution.
      */
     protected void finished() {
-        log.info("{}: finished(): {}", getName(), this);
+        log.debug("{}: finished(): {}", getName(), this);
         setState(CueState.FINISHED);
 
         Runnable _onFinished = getOnFinished();
         if (_onFinished != null) {
-            log.info("{}: (running onFinished): {}", getName(), this);
+            log.debug("{}: (running onFinished): {}", getName(), this);
             _onFinished.run();
         }
     }
@@ -248,20 +248,20 @@ public abstract class CueViewModel<C extends Cue> {
     }
 
     public static CueViewModel createCueViewModel(Cue cue, CueViewModelContext context) {
-        log.info("createCueViewModel(): cue={}", cue);
+        log.debug("createCueViewModel(): cue={}", cue);
         return loaders.stream()
                 .filter(p -> {
-                    log.info("createCueViewModel(): p.getCueClass={}, cue.class={}", p.get().getCueClass(), cue.getClass());
+                    log.debug("createCueViewModel(): p.getCueClass={}, cue.class={}", p.get().getCueClass(), cue.getClass());
                     return p.get().getCueClass().equals(cue.getClass());
                 })
                 .map(p -> {
                     CueViewModel instance = p.get().newInstance();
-                    log.info("createCueViewModel(): p.newInstance={}", instance);
+                    log.debug("createCueViewModel(): p.newInstance={}", instance);
                     return instance;
                 })
                 .map(vm -> {
                     vm.copyFrom(cue, context);
-                    log.info("createCueViewModel(): vm={}, cue={}", vm, cue);
+                    log.debug("createCueViewModel(): vm={}, cue={}", vm, cue);
                     return vm;
                 })
                 .findFirst()

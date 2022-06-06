@@ -4,7 +4,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitMenuButton?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
@@ -20,18 +19,9 @@
       <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Stop" />
       <Separator focusTraversable="false" orientation="VERTICAL" />
       <Button fx:id="nextCueButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Next Cue" />
-      <SplitMenuButton focusTraversable="false" mnemonicParsing="false" text="Fade out (2s)">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Fade out (1s)" />
-          <MenuItem mnemonicParsing="false" text="Fade out (3s)" />
-            <MenuItem mnemonicParsing="false" text="Fade out (4s)" />
-            <MenuItem mnemonicParsing="false" text="Fade out (5s)" />
-        </items>
-      </SplitMenuButton>
       <Separator focusTraversable="false" orientation="VERTICAL" />
     <Button fx:id="openButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Open" />
       <Separator focusTraversable="false" orientation="VERTICAL" />
-      <ToggleButton fx:id="dmxToggleButton" focusTraversable="false" mnemonicParsing="false" text="DMX (off)" />
       <ToggleSwitch text="DMX" />
       <Separator focusTraversable="false" orientation="VERTICAL" />
       <SplitMenuButton fx:id="toggleScreenButton" focusTraversable="false" mnemonicParsing="false" text="Screen">

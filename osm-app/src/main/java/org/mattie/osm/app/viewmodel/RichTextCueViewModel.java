@@ -38,6 +38,7 @@ public class RichTextCueViewModel extends DisplayableCueViewModel<RichTextCue> {
         timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, (evt) -> {
             log.debug("{}: [display rich text]: {}", getName(), this);
             setDisplayed(true);
+            setDisplayed(false);
         }));
 
         // Time Padding

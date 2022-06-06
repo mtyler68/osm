@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.ToggleButton;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.controlsfx.control.action.Action;
 import org.controlsfx.control.action.ActionMap;
@@ -25,9 +24,6 @@ public class MainToolbarController {
 
     @FXML
     public SplitMenuButton playButton;
-
-    @FXML
-    public ToggleButton dmxToggleButton;
 
     @FXML
     public Button fullscreenButton;
@@ -51,9 +47,6 @@ public class MainToolbarController {
 
     @FXML
     public void initialize() {
-
-        Action dmxToggleAction = ActionMap.action(ActionId.DMX_TOGGLE);
-        ActionUtils.configureButton(dmxToggleAction, dmxToggleButton);
 
         fullscreenButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         Action fullscreenAction = ActionMap.action(ActionId.FULLSCREEN);

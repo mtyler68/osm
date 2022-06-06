@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TitledPane?>
@@ -27,6 +28,24 @@
                                         </TitledPane>
                                     </children>
                                 </AnchorPane>
+                                <fx:include source="HotKeyView.fxml" />
+                            </items>
+                        </SplitPane>
+                    </items>
+                </SplitPane>
+                <SplitPane dividerPositions="0.29797979797979796, 0.5">
+                    <items>
+                        <SplitPane focusTraversable="false" orientation="VERTICAL">
+                            <items>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <TitledPane prefHeight="200.0" prefWidth="200.0" text="Media" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <content>
+                                                <fx:include source="MediaScrubberListView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                            </content>
+                                        </TitledPane>
+                                    </children>
+                                </AnchorPane>
                                 <AnchorPane>
                                     <children>
                                         <TitledPane animated="false" text="Media Playlist" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -38,19 +57,6 @@
                                 </AnchorPane>
                             </items>
                         </SplitPane>
-                    </items>
-                </SplitPane>
-                <SplitPane dividerPositions="0.29797979797979796, 0.5">
-                    <items>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <TitledPane prefHeight="200.0" prefWidth="200.0" text="Media" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <content>
-                                        <fx:include source="MediaScrubberListView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </content>
-                                </TitledPane>
-                            </children>
-                        </AnchorPane>
                         <AnchorPane>
                             <children>
                                 <TitledPane animated="false" text="Script" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -60,7 +66,7 @@
                                 </TitledPane>
                             </children>
                         </AnchorPane>
-                        <fx:include source="HotKeyView.fxml" />
+                        
                     </items>
                 </SplitPane>
             </items>
@@ -75,7 +81,30 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
+                        <Label text="Length:">
+                            <HBox.margin>
+                                <Insets left="15.0" />
+                            </HBox.margin>
+                        </Label>
+                        <Label fx:id="lengthLabel" text="00:00:00.0">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="Remaining:">
+                            <padding>
+                                <Insets left="15.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="remainingLabel" text="00:00:00.0">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
                     </children>
+                    <padding>
+                        <Insets top="5.0" />
+                    </padding>
                 </HBox>
             </children>
         </AnchorPane>

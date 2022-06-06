@@ -72,14 +72,159 @@ public class SpringRecital22 {
         return show;
     }
 
-    public static Show dfBbTtKcPc() {
-        Show show = new Show().setName("Spring Recital 2022 - DF BB TT KC PC");
+    public static Show danceFunBoogieBabies() {
+        Show show = new Show().setName("Spring Recital 2022 - DanceFUN and Boogie Babies");
 
-        MediaCue dfMoVid = mediaCue("DF Mo (vid): The Tiki, Tiki, Tiki Room", new MediaResource()
+        MediaCue dfMoVid = mediaCue("DF Mo (video): The Tiki, Tiki, Tiki Room", new MediaResource()
                 .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\DF Mo.mp4")
                 .setName("DF Mon Vid")
                 .setType(MediaResource.MediaType.AUDIO_VIDEO));
         show.add(dfMoVid);
+
+        nextIndex();
+        MediaCue dfMoMusic = (MediaCue) mediaCue("DF Mo (music): The Tiki, Tiki, Tiki Room", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\DF Mo - The Tiki, Tiki, Tiki Room.mp3")
+                .setName("The Tiki, Tiki, Tiki Room")
+                .setStopAt(Duration.parse("PT1M41S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(dfMoMusic);
+
+        nextIndex();
+        MediaCue dfTuVid = mediaCue("DF Tu (video): I Like To Move It", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\DF Tu.mp4")
+                .setName("DF Tue Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(dfTuVid);
+
+        nextIndex();
+        MediaCue dfTuMusic = (MediaCue) mediaCue("DF Tu (music): I Like To Move It", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\DF Tu - I Like To Move It.mp3")
+                .setName("I Like To Move It")
+                .setStopAt(Duration.parse("PT1M22S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(dfTuMusic);
+
+        nextIndex();
+        MediaCue dfFrVid = mediaCue("DF Fr (video): Ballet Dancing Bears", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\DF Fr.mp4")
+                .setName("DF Fri Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(dfFrVid);
+
+        nextIndex();
+        MediaCue dfFrMusic = (MediaCue) mediaCue("DF Fr (music): Ballet Dancing Bears", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\DF Fr - Ballet Dancing Bears.mp3")
+                .setName("Ballet Dancing Bears"));
+        show.add(dfFrMusic);
+
+        nextIndex();
+        MediaCue bbMoVid = mediaCue("BB Mo (video): Take You To Rio", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\BB Mo.mp4")
+                .setName("BB Mon Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(bbMoVid);
+
+        nextIndex();
+        MediaCue bbMoMusic = (MediaCue) mediaCue("BB Mo (music): Take You To Rio", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\BB Mo - Take You To Rio.mp3")
+                .setName("Take You To Rio").setStopAt(Duration.parse("PT1M59S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(bbMoMusic);
+
+        nextIndex();
+        MediaCue bbTuVid = mediaCue("BB Tu (video): Monkey See, Monkey Do", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\BB Tu.mp4")
+                .setName("BB Tue Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(bbTuVid);
+
+        nextIndex();
+        MediaCue bbTuMusic = (MediaCue) mediaCue("BB Tu (music): Monkey See, Monkey Do", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\BB Tu - Monkey See, Monkey Do.mp3")
+                .setName("Monkey See, Monkey Do").setStopAt(Duration.parse("PT1M35S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(bbTuMusic);
+
+        // BB Fr
+        nextIndex();
+        MediaCue bbFrVid = mediaCue("BB Fr (video): You'll Be In My Heart", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\BB Fr.mp4")
+                .setName("BB Fri Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(bbFrVid);
+
+        nextIndex();
+        MediaCue bbFrMusic = (MediaCue) mediaCue("BB Fr (music): You'll Be In My Heart", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\BB Fr - Youll Be In My Heart.mp3")
+                .setName("You'll Be In My Heart"));
+        show.add(bbFrMusic);
+
+        // Private Ballet
+        nextIndex();
+        MediaCue pbgVid = mediaCue("PBG (video): Bear Necessities", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\PBG Fr.mp4")
+                .setName("PBG Fri Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(pbgVid);
+
+        nextIndex();
+        MediaCue pbgMusic = (MediaCue) mediaCue("PBG (music): Bear Necessities", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\Private Ballet Fr - Bear Necessities.mp3")
+                .setName("Bear Necessities"));
+        show.add(pbgMusic);
+
+        // BB Fr PM
+        nextIndex();
+        MediaCue bbFrPmVid = mediaCue("BB Fr PM (video): Love Will Find a Way", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\BB Fr PM.mp4")
+                .setName("BB Fri PM Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(bbFrPmVid);
+
+        nextIndex();
+        MediaCue bbFrPmMusic = (MediaCue) mediaCue("BB Fr PM (music): Love Will Find a Way", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\BB Fr PM - Love Will Find a Way.mp3")
+                .setName("Love Will Find a Way")
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(bbFrPmMusic);
+
+        return show;
+    }
+
+    public static Show ttKcPc() {
+        Show show = new Show().setName("Spring Recital 2022 - TT, KC, and PC");
+
+        // TT Mo
+        MediaCue ttMoVid = mediaCue("TT Mo (video): Trashin' The Camp", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\TT Mo.mp4")
+                .setName("TT Mon Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(ttMoVid);
+
+        nextIndex();
+        MediaCue ttMoMusic = (MediaCue) mediaCue("TT Mo (music): Trashin' The Camp", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\TT Mo - Trashin' the Camp.mp3"));
+        show.add(ttMoMusic);
+
+        // TT Mo
+        nextIndex();
+        MediaCue ttFrVid = mediaCue("TT Fr (video): Can You Feel the Love Tonight", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\TT Fr.mp4")
+                .setName("TT Fri Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(ttFrVid);
+
+        nextIndex();
+        MediaCue ttFrMusic = (MediaCue) mediaCue("TT Fr (music): Can You Feel the Love Tonight", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\TT Fr - Can You Feel the Love Tonight.mp3")
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(ttFrMusic);
+
+        return show;
+    }
+
+    public static Show dfBbTtKcPc() {
+        Show show = new Show().setName("Spring Recital 2022 - DF BB TT KC PC");
 
         nextIndex();
         MediaCue ttWe = (MediaCue) mediaCue("TT We: Hakuna Matata", new MediaResource()
@@ -223,9 +368,14 @@ public class SpringRecital22 {
         Show show = new Show().setName("Spring Recital 2022 - Cinderella Sc. 2");
 
         for (int ndx = 3; ndx < 9; ndx++) {
-            MediaCue track = (MediaCue) mediaCue(String.format("Cinderella: Track 0%d", ndx), new MediaResource()
+            MediaResource resource = new MediaResource()
                     .setFile(String.format("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\0%1$d Track 0%1$d.mp3", ndx))
-                    .setName(String.format("Track 0%d", ndx)))
+                    .setName(String.format("Track 0%d", ndx));
+            if (ndx == 3) {
+                resource.setStopAt(Duration.parse("PT2M57.6S"));
+            }
+
+            MediaCue track = (MediaCue) mediaCue(String.format("Cinderella: Track 0%d", ndx), resource)
                     .setTrigger(TriggerType.AUTO_START);
             show.add(track);
 

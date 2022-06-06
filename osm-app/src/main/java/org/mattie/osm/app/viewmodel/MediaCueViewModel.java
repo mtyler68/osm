@@ -78,7 +78,7 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
 //    }
 //    @Override
 //    public void pause() {
-//        log.info("{}: pause(): {}", getName(), this);
+//        log.debug("{}: pause(): {}", getName(), this);
 //        switch (mediaPlayer.getStatus()) {
 //            case PLAYING:
 //                mediaPlayer.pause();
@@ -89,7 +89,7 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
 //
 //    @Override
 //    public void stop() {
-//        log.info("{}: stop(): {}", getName(), this);
+//        log.debug("{}: stop(): {}", getName(), this);
 //        switch (mediaPlayer.getStatus()) {
 //            case PAUSED:
 //            case PLAYING:
@@ -227,13 +227,13 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
 
     @Override
     public void copyFrom(MediaCue cue, CueViewModelContext context) {
-        log.info("copyFrom(): cue={}", cue);
+        log.debug("copyFrom(): cue={}", cue);
         super.copyFrom(cue, context);
         copyFrom(cue.getMedia());
     }
 
     public void copyFrom(MediaResource resource) {
-        log.info("copyFrom(): resource={}", resource);
+        log.debug("copyFrom(): resource={}", resource);
 
         if (getName() == null) {
             setName(resource.getName());
