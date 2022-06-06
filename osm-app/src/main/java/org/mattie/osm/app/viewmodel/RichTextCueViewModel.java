@@ -21,6 +21,9 @@ public class RichTextCueViewModel extends DisplayableCueViewModel<RichTextCue> {
     @Getter
     private List<String> pages = new ArrayList<>();
 
+    @Getter
+    private boolean clearPages;
+
     @Override
     public String getSimpleType() {
         return "Rich Text";
@@ -57,5 +60,6 @@ public class RichTextCueViewModel extends DisplayableCueViewModel<RichTextCue> {
     public void copyFrom(RichTextCue cue, CueViewModelContext context) {
         super.copyFrom(cue, context);
         getPages().addAll(cue.getPages());
+        clearPages = cue.isClearPages();
     }
 }

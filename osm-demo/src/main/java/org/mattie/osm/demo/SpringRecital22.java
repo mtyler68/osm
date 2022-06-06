@@ -10,10 +10,12 @@ import static org.mattie.osm.demo.Cues.newSubIndex;
 import static org.mattie.osm.demo.Cues.nextIndex;
 import static org.mattie.osm.demo.Cues.noteCue;
 import static org.mattie.osm.demo.Cues.popSubIndex;
+import static org.mattie.osm.demo.Cues.richTextCue;
 import org.mattie.osm.model.Cue;
 import org.mattie.osm.model.MediaCue;
 import org.mattie.osm.model.MediaResource;
 import org.mattie.osm.model.NoteCue;
+import org.mattie.osm.model.RichTextCue;
 import org.mattie.osm.model.SequentialCue;
 import org.mattie.osm.model.Show;
 import org.mattie.osm.model.TriggerType;
@@ -38,32 +40,72 @@ public class SpringRecital22 {
 
         Show show = new Show().setName("Spring Recital 2022 - Trevor");
 
-        MediaCue surfacePressureCue = mediaCue("Mini-Hop: Surface Pressure",
-                resourceSurfacePressure()
-                        .setStopAt(Duration.parse("PT1M42.7S")));
-        show.add(surfacePressureCue);
+        // Mini-Hop
+        MediaCue miniVid = mediaCue("Mini-Hop (video): Surface Pressure", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\mini-hop.mp4")
+                .setName("Mini-Hop Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(miniVid);
 
         nextIndex();
-        MediaCue burnItUpCue = mediaCue("Hip-Hop 1: Burn It Up",
+        MediaCue miniMusic = mediaCue("Mini-Hop (music): Surface Pressure",
+                resourceSurfacePressure()
+                        .setStopAt(Duration.parse("PT1M42.7S")));
+        show.add(miniMusic);
+
+        // Hip-Hop 1
+        nextIndex();
+        MediaCue hop1Vid = mediaCue("Hip-Hop 1 (video): Burn It Up", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\hip-hop 1.mp4")
+                .setName("Hip-Hop 1 Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(hop1Vid);
+
+        nextIndex();
+        MediaCue burnItUpCue = mediaCue("Hip-Hop 1 (music): Burn It Up",
                 resourceBurnItUp()
                         .setStopAt(Duration.parse("PT3M28S")));
         show.add(burnItUpCue);
 
+        // Hip-Hop 2/3
         nextIndex();
-        MediaCue wtf = (MediaCue) mediaCue("Hip-Hop 2/3: What U Workin' With", new MediaResource()
+        MediaCue hop23Vid = mediaCue("Hip-Hop 2/3 (video): What U Workin' With", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\hip-hop 23.mp4")
+                .setName("Hip-Hop 23 Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(hop23Vid);
+
+        nextIndex();
+        MediaCue wtf = (MediaCue) mediaCue("Hip-Hop 2/3 (music): What U Workin' With", new MediaResource()
                 .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Trevor\\Hip-Hop 23 - What U Workin' With_.mp3")
-                .setStopAt(Duration.parse("PT2M18S"))
+                .setStopAt(Duration.parse("PT1M44.9S"))
                 .setName("What U Workin' With"));
         show.add(wtf);
 
+        // Jazz 2/3
         nextIndex();
-        MediaCue heyGirlCue = mediaCue("Jazz 2/3: Hey Girl",
+        MediaCue jazz23Vid = mediaCue("Jazz 2/3 (video): Hey Girl", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\jazz 23.mp4")
+                .setName("Jazz 23 Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(jazz23Vid);
+
+        nextIndex();
+        MediaCue heyGirlCue = mediaCue("Jazz 2/3 (music): Hey Girl",
                 resourceHeyGirl()
                         .setStopAt(Duration.parse("PT3M2.7S")));
         show.add(heyGirlCue);
 
+        // Contemporary
         nextIndex();
-        MediaCue trustInMeCue = mediaCue("Contemporary: Trust In Me",
+        MediaCue contempVid = mediaCue("Contemporary (video): Trust In Me", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\Contemporary.mp4")
+                .setName("Contemporary Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(contempVid);
+
+        nextIndex();
+        MediaCue trustInMeCue = mediaCue("Contemporary (music): Trust In Me",
                 resourceTrustInMe()
                         .setStopAt(Duration.parse("PT2M18S"))
                         .setFadeOut(Duration.ofSeconds(5)));
@@ -305,20 +347,30 @@ public class SpringRecital22 {
         Show show = new Show()
                 .setName("Spring Recital 2022 - Moana Sc. 1");
 
-        NoteCue beforeCurtainCue = noteCue("Before Curtain", "Cue music before curtain opens")
-                .setClearNotes(true);
-        show.add(beforeCurtainCue);
-
-        nextIndex();
-        NoteCue visualCue1 = noteCue("Visual Cue", "Fade 01 Cavern when Moana rows across stage")
+        // Pre scene notes
+        NoteCue visualCue1 = noteCue("Visual Cue", "Fade '01 Cavern' when Moana rows across stage")
                 .setClearNotes(true);
         show.add(visualCue1);
 
         nextIndex();
+        NoteCue beforeCurtainCue = (NoteCue) noteCue("Before Curtain", "Cue '01 Cavern' music before curtain opens")
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(beforeCurtainCue);
+
+        // Script
+        nextIndex();
+        RichTextCue script = (RichTextCue) richTextCue("Moana Scene 1 Script",
+                Constants.MOANA_SC1_PG1,
+                Constants.MOANA_SC1_PG2,
+                Constants.MOANA_SC1_PG3)
+                .setClearPages(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(script);
+
+        nextIndex();
         MediaCue cavernCue = (MediaCue) mediaCue("01 Cavern", new MediaResource()
                 .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\01 Cavern.mp3")
-                .setName("Cavern"))
-                .setTrigger(TriggerType.AUTO_START);
+                .setName("Cavern"));
         show.add(cavernCue);
 
         nextIndex();
@@ -372,7 +424,7 @@ public class SpringRecital22 {
                     .setFile(String.format("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\0%1$d Track 0%1$d.mp3", ndx))
                     .setName(String.format("Track 0%d", ndx));
             if (ndx == 3) {
-                resource.setStopAt(Duration.parse("PT2M57.6S"));
+                resource.setStopAt(Duration.parse("PT2M57.5S"));
             }
 
             MediaCue track = (MediaCue) mediaCue(String.format("Cinderella: Track 0%d", ndx), resource)
@@ -382,6 +434,12 @@ public class SpringRecital22 {
             nextIndex();
         }
 
+        NoteCue noteCue = (NoteCue) noteCue("Curtain Call", "Play Track 09 (next cue) for curtain call")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(noteCue);
+
+        nextIndex();
         MediaCue track09 = (MediaCue) mediaCue("Cinderella: Track 09", new MediaResource()
                 .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\09 Track 09.mp3")
                 .setName("Track 09"));

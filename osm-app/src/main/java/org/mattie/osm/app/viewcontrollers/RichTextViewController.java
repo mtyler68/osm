@@ -79,6 +79,9 @@ public class RichTextViewController extends AbstractViewController {
                     ((RichTextCueViewModel) cvm).displayedProperty()
                             .addListener((ov, oldVal, newVal) -> {
                                 if (newVal.booleanValue()) {
+                                    if (((RichTextCueViewModel) cvm).isClearPages()) {
+                                        clear();
+                                    }
                                     loadPages((RichTextCueViewModel) cvm);
                                 }
                             });

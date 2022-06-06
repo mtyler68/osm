@@ -18,6 +18,8 @@ public class RichTextCue extends Cue {
 
     private List<String> pages = new ArrayList<>();
 
+    private boolean clearPages;
+
     public RichTextCue add(String... text) {
         pages.addAll(Arrays.asList(text));
         return this;

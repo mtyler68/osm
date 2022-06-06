@@ -95,12 +95,12 @@ public class ScreenViewController extends AbstractViewController {
 
     }
 
-    @ActionProxy(text = "Show Video Screen", id = ActionId.TOGGLE_VIDEO, graphic = "font>FontAwesome|FILM")
+    @ActionProxy(text = "Show Video Screen", id = ActionId.TOGGLE_SCREEN, graphic = "font>FontAwesome|FILM")
     public void onToggleScreenAction() {
         log.debug("onToggleScreenAction()");
 
         if (screenStage != null) {
-            Action action = ActionMap.action(ActionId.TOGGLE_VIDEO);
+            Action action = ActionMap.action(ActionId.TOGGLE_SCREEN);
             if (screenStage.isShowing()) {
                 screenStage.setFullScreen(false);
                 screenStage.hide();

@@ -10,6 +10,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.mattie.osm.app.application.ResetEvent;
 import org.mattie.osm.app.events.ShowOpenedEvent;
 import org.mattie.osm.app.viewmodel.MediaCueViewModel;
+import org.mattie.osm.app.viewmodel.MediaPlaylistCueViewModel;
 import org.mattie.osm.app.viewmodel.ShowViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -54,14 +55,24 @@ public class MediaScrubberListViewController extends AbstractViewController {
         clear();
         ShowViewModel show = evt.getShowViewModel();
 
+        // MediaCueViewModel
         configureCues(show.getCueViewModels(),
                 ((cvm) -> cvm instanceof MediaCueViewModel),
-                ((cvm) -> {
-                    final MediaCueViewModel mcvm = (MediaCueViewModel) cvm;
+                ((cvm) -> configure((MediaCueViewModel) cvm)));
+
+//        configureCues(show.getCueViewModels(),
+//                ((cvm) -> cvm instanceof MediaPlaylistCueViewModel),
+//                ((cvm) -> configure((MediaPlaylistCueViewModel) cvm)));
+    }
+
+    private void configure(MediaPlaylistCueViewModel plvm) {
+        log.debug("configure(MediaPlayListCueViewModel}");
+        plvm.getMediaViewModels().stream()
+                .forEach(mcvm -> {
 
                     final Node scrubber = createScrubber(mcvm);
 
-                    mcvm.stateProperty().addListener((ov, oldVal, newVal) -> {
+                    mcvm.getMediaPlayer().statusProperty().addListener((ov, oldVal, newVal) -> {
                         switch (newVal) {
                             case PAUSED:
                             case PLAYING:
@@ -71,7 +82,6 @@ public class MediaScrubberListViewController extends AbstractViewController {
                                 }
                                 break;
 
-                            case FINISHED:
                             case STOPPED:
                                 log.debug("{}: (stopped): {}", mcvm.getName(), mcvm);
                                 if (scrubberList.getChildren().contains(scrubber)) {
@@ -81,28 +91,31 @@ public class MediaScrubberListViewController extends AbstractViewController {
                         }
                     });
 
-//                    mcvm.getMediaPlayer().statusProperty().addListener((ov, oldVal, newVal) -> {
-//
-//                        switch (newVal) {
-//                            case PLAYING:
-//                            case PAUSED:
-//                                log.debug("{}: (playing or paused): {}", mcvm.getName(), mcvm);
-//                                if (!scrubberList.getChildren().contains(scrubber)) {
-//                                    scrubberList.getChildren().add(scrubber);
-//                                }
-//                                break;
-//                            case HALTED:
-//                                log.debug("{}: (halted): {}", mcvm.getName(), mcvm);
-//                                break;
-//                            case STOPPED:
-//                                log.debug("{}: (stopped): {}", mcvm.getName(), mcvm);
-//                                if (scrubberList.getChildren().contains(scrubber)) {
-//                                    scrubberList.getChildren().remove(scrubber);
-//                                }
-//                                break;
-//                        }
-//                    });
-                }));
+                });
+    }
+
+    private void configure(MediaCueViewModel mcvm) {
+        final Node scrubber = createScrubber(mcvm);
+
+        mcvm.stateProperty().addListener((ov, oldVal, newVal) -> {
+            switch (newVal) {
+                case PAUSED:
+                case PLAYING:
+                    log.debug("{}: (playing or paused): {}", mcvm.getName(), mcvm);
+                    if (!scrubberList.getChildren().contains(scrubber)) {
+                        scrubberList.getChildren().add(scrubber);
+                    }
+                    break;
+
+                case FINISHED:
+                case STOPPED:
+                    log.debug("{}: (stopped): {}", mcvm.getName(), mcvm);
+                    if (scrubberList.getChildren().contains(scrubber)) {
+                        scrubberList.getChildren().remove(scrubber);
+                    }
+                    break;
+            }
+        });
     }
 
     private Node createScrubber(MediaCueViewModel cvm) {

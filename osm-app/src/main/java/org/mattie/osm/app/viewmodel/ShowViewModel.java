@@ -142,7 +142,7 @@ public class ShowViewModel {
      *
      */
     public void play() {
-        log.info("play(): {}", this);
+        log.debug("play(): {}", this);
 
         // TODO: Need to add listeners to cues with media that load in the background in order to update totalDuration property.
         setTotalDuration(calculateDuration());
@@ -235,7 +235,7 @@ public class ShowViewModel {
         }, () -> {
             setState(CueState.STOPPED);
             setCurrentCueViewModel(null);
-            log.info("startCurrent(): end of show: {}", ShowViewModel.this);
+            log.debug("startCurrent(): end of show: {}", ShowViewModel.this);
         });
     }
 

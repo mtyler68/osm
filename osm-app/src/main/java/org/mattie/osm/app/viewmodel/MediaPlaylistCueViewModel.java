@@ -3,6 +3,7 @@ package org.mattie.osm.app.viewmodel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -136,17 +137,17 @@ public class MediaPlaylistCueViewModel extends CueViewModel<MediaPlaylistCue> {
                         new KeyFrame(
                                 startPos.add(getCrossfade()),
                                 (evt) -> log.debug("{}: [fade in finished]: {}", getName(), mediaViewModel.getSource()),
-                                new KeyValue(mediaViewModel.getMediaPlayer().volumeProperty(), volume)));
+                                new KeyValue(mediaViewModel.getMediaPlayer().volumeProperty(), volume, Interpolator.EASE_BOTH)));
                 timeline.getKeyFrames().add(
                         new KeyFrame(
                                 startPos.add(mediaViewModel.getMediaPlayer().getTotalDuration().subtract(getCrossfade())),
                                 (evt) -> log.debug("{}: [fade out start]: {}", getName(), mediaViewModel.getSource()),
-                                new KeyValue(mediaViewModel.getMediaPlayer().volumeProperty(), volume)));
+                                new KeyValue(mediaViewModel.getMediaPlayer().volumeProperty(), volume, Interpolator.EASE_BOTH)));
                 timeline.getKeyFrames().add(
                         new KeyFrame(
                                 startPos.add(mediaViewModel.getMediaPlayer().getTotalDuration()),
                                 (evt) -> log.debug("{}: [fade out finish]: {}", getName(), mediaViewModel.getSource()),
-                                new KeyValue(mediaViewModel.getMediaPlayer().volumeProperty(), 0)));
+                                new KeyValue(mediaViewModel.getMediaPlayer().volumeProperty(), 0, Interpolator.EASE_BOTH)));
             }
 
             // End frame

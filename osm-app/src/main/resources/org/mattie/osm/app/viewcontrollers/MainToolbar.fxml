@@ -9,14 +9,8 @@
 
 <ToolBar xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mattie.osm.app.viewcontrollers.MainToolbarController">
   <items>
-      <SplitMenuButton fx:id="playButton" focusTraversable="false" mnemonicParsing="false" text="Play">
-        <items>
-            <MenuItem mnemonicParsing="false" text="Restart cue" />
-          <MenuItem mnemonicParsing="false" text="Restart show" />
-        </items>
-      </SplitMenuButton>
-      <Button fx:id="pauseButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Pause" />
-      <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Stop" />
+      <Button fx:id="playPauseButton" focusTraversable="false" mnemonicParsing="false" text="Play/Pause" textFill="#0a861b" />
+      <Button fx:id="stopButton" contentDisplay="CENTER" disable="true" focusTraversable="false" mnemonicParsing="false" text="Stop" />
       <Separator focusTraversable="false" orientation="VERTICAL" />
       <Button fx:id="nextCueButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Next Cue" />
       <Separator focusTraversable="false" orientation="VERTICAL" />
