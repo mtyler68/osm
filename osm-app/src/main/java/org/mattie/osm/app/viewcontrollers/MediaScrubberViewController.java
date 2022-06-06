@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.mattie.osm.app.viewmodel.CueState;
 import org.mattie.osm.app.viewmodel.MediaCueViewModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -42,6 +43,9 @@ public class MediaScrubberViewController {
 
     @Getter
     private MediaCueViewModel model;
+
+    @Autowired
+    private ScreenViewController screenController;
 
     private double getTotalDuration() {
         return model.getMediaPlayer().getTotalDuration().toSeconds();
@@ -83,7 +87,7 @@ public class MediaScrubberViewController {
 
     private void fade(double dur) {
         if (model.getState() == CueState.PLAYING) {
-            model.fadeOut(Duration.seconds(dur));
+            model.fadeOut(Duration.seconds(dur), screenController.getCurrentView());
         }
     }
 

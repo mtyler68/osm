@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javax.annotation.PostConstruct;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.controlsfx.control.action.Action;
 import org.controlsfx.control.action.ActionMap;
@@ -35,6 +36,7 @@ import org.springframework.stereotype.Service;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class ShowController {
 
+    @Getter
     private ShowViewModel showViewModel;
 
     private static Map<KeyCode, String> keyCodeToActionIdMap = new HashMap<>();
@@ -94,7 +96,7 @@ public class ShowController {
             if (act != null) {
                 act.handle(new ActionEvent());
             } else {
-                //getShowManager().playHotKey(evt.getText().toLowerCase());
+                getShowViewModel().playHotKey(evt.getText());
             }
 
         });

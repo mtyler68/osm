@@ -11,7 +11,6 @@ import static org.mattie.osm.demo.Cues.nextIndex;
 import static org.mattie.osm.demo.Cues.noteCue;
 import static org.mattie.osm.demo.Cues.popSubIndex;
 import static org.mattie.osm.demo.Cues.richTextCue;
-import org.mattie.osm.model.Cue;
 import org.mattie.osm.model.MediaCue;
 import org.mattie.osm.model.MediaResource;
 import org.mattie.osm.model.NoteCue;
@@ -26,16 +25,15 @@ import org.mattie.osm.model.TriggerType;
  */
 public class SpringRecital22 {
 
-    public static Show springRecital2022() {
-        Show show = new Show().setName("2022 Spring Recital");
-
-        addOpenHouseCues(show);
-        nextIndex();
-        addMoanaAct1Cues(show);
-
-        return show;
-    }
-
+//    public static Show springRecital2022() {
+//        Show show = new Show().setName("2022 Spring Recital");
+//
+//        addOpenHouseCues(show);
+//        nextIndex();
+//        addMoanaAct1Cues(show);
+//
+//        return show;
+//    }
     public static Show trevor2022() {
 
         Show show = new Show().setName("Spring Recital 2022 - Trevor");
@@ -310,23 +308,42 @@ public class SpringRecital22 {
         return show;
     }
 
-    private static void addOpenHouseCues(Show show) {
-//        ParallelCue openHouseCue = parallelCue("OPEN HOUSE");
-//
-//        newSubIndex();
-//        Cue cue = mediaPlaylistCue("OPEN HOUSE MUSIC", Duration.ZERO,
-//                Constants.resourceBrazilSamba(),
-//                Constants.resourceRunThroughTheJungle(),
-//                Constants.resourceStrandedInTheJungle(),
-//                Constants.resourceWelcomeToTheJungle());
-//        openHouseCue.add(cue);
-//
-//        nextIndex();
-        Cue cue = noteCue("OPEN HOUSE BILLBOARDS", "Create billboard cue")
-                .setDelay(Duration.ofSeconds(10));
-        show.add(cue);
-//        openHouseCue.add(cue);
-//        popSubIndex();
+    public static MediaCue createPlaylistMedia(String name, String source) {
+        return (MediaCue) mediaCue(name, new MediaResource().setName(name).setFile(source))
+                .setTrigger(TriggerType.AUTO_START)
+                .setDelay(Duration.ofMillis(2000));
+    }
+
+    public static Show openHouseCues() {
+        Show show = new Show().setName("Spring Reecital 2022 - Open House");
+
+        show.add(createPlaylistMedia("Brazil Samba", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\bensound-brazilsamba.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Adventrue", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\adventure.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Stranded In the Jungle", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\01 Stranded In the Jungle.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Ukulele", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\Ukulele.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("New Dawn", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\newdawn.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Dreams", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\dreams.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("The Lion Sleeps Tonight", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\01 The Lion Sleeps Tonight (Re-Recor.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Badass", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\badass.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Funky Suspense", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\funkysuspense.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Instict", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\instinct.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Bungle In The Jungle", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\06 Bungle In The Jungle.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Run Through The Jungle", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\13 Run Through the Jungle.mp3"));
+        nextIndex();
+        show.add(createPlaylistMedia("Welcome to the Jungle", "C:\\Users\\Matt\\Music\\2022 Recital\\Open House\\01 Welcome to the Jungle.mp3"));
+
+        return show;
     }
 
     private static void addMoanaAct1Cues(Show show) {

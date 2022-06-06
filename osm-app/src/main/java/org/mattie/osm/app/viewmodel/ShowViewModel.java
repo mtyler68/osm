@@ -117,6 +117,8 @@ public class ShowViewModel {
     protected void buildAnimation() {
         getCueViewModels().stream()
                 .forEach(vm -> vm.buildAnimation());
+        getHotKeyViewModels().stream()
+                .forEach(vm -> vm.buildAnimation());
     }
 
     public ObjectProperty<ObservableList<CueViewModel>> hotKeyCueViewModelsProperty() {
@@ -129,6 +131,13 @@ public class ShowViewModel {
 
     public void setHotKeyCueViewModels(ObservableList<CueViewModel> newHotKeyCueViewModels) {
         hotKeyCueViewModels.set(newHotKeyCueViewModels);
+    }
+
+    public void playHotKey(String key) {
+        log.info("playHotKey('{}'): {}", key.toUpperCase(), this);
+        getHotKeyViewModels().stream()
+                .filter(vm -> vm.getHotKey().equalsIgnoreCase(key))
+                .findFirst().ifPresent(vm -> vm.play());
     }
 
     /**

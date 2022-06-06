@@ -60,6 +60,11 @@ public class MediaScrubberListViewController extends AbstractViewController {
                 ((cvm) -> cvm instanceof MediaCueViewModel),
                 ((cvm) -> configure((MediaCueViewModel) cvm)));
 
+        // Hot Key MediaCueViewModel
+        configureCues(show.getHotKeyViewModels(),
+                ((cvm) -> cvm instanceof MediaCueViewModel),
+                ((cvm) -> configure((MediaCueViewModel) cvm)));
+
 //        configureCues(show.getCueViewModels(),
 //                ((cvm) -> cvm instanceof MediaPlaylistCueViewModel),
 //                ((cvm) -> configure((MediaPlaylistCueViewModel) cvm)));

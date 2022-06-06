@@ -14,6 +14,7 @@ import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Node;
 import javafx.util.Duration;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -385,7 +386,7 @@ public abstract class CueViewModel<C extends Cue> {
         return false;
     }
 
-    public void fadeOut(Duration dur) {
+    public void fadeOut(Duration dur, Node view) {
 
     }
 }

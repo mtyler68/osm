@@ -9,6 +9,7 @@ import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.scene.Node;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -268,13 +269,27 @@ public class MediaCueViewModel extends CueViewModel<MediaCue> {
     }
 
     @Override
-    public void fadeOut(Duration dur) {
+    public void fadeOut(Duration dur, Node view) {
 
-        final Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(getMediaPlayer().volumeProperty(), getMediaPlayer().getVolume())),
-                new KeyFrame(dur, new KeyValue(getMediaPlayer().volumeProperty(), 0, Interpolator.EASE_BOTH)));
+        final Timeline timeline = new Timeline();
+
+        if (getMediaType() != MediaResource.MediaType.VIDEO_ONLY) {
+            timeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.ZERO, new KeyValue(getMediaPlayer().volumeProperty(), getMediaPlayer().getVolume())),
+                    new KeyFrame(dur, new KeyValue(getMediaPlayer().volumeProperty(), 0, Interpolator.EASE_BOTH)));
+        }
+
+        if (getMediaType() != MediaResource.MediaType.AUDIO_ONLY && view != null) {
+            timeline.getKeyFrames().addAll(
+                    new KeyFrame(Duration.ZERO, new KeyValue(view.opacityProperty(), view.getOpacity())),
+                    new KeyFrame(dur, new KeyValue(view.opacityProperty(), 0, Interpolator.EASE_BOTH)));
+        }
+
         timeline.setOnFinished((evt) -> {
             end();
+//            if (view != null) {
+//                view.setOpacity(1);
+//            }
         });
 
         stateProperty().addListener((ov, oldVal, newVal) -> {

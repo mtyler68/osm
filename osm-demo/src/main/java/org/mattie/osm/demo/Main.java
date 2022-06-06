@@ -40,6 +40,7 @@ public class Main {
 
         generateDemo(SpringRecital22.danceFunBoogieBabies(), "2022_spring_recital_dancefun_boogiebabies");
         generateDemo(SpringRecital22.ttKcPc(), "2022_spring_recital_tt_kc_pc");
+        generateDemo(SpringRecital22.openHouseCues(), "2022_spring_recital_open_house");
     }
 
     private static void generateDemo(Show show, String title) throws IOException {

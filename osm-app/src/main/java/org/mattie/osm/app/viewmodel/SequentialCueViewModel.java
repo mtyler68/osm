@@ -1,5 +1,6 @@
 package org.mattie.osm.app.viewmodel;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import javafx.animation.Animation;
 import javafx.animation.SequentialTransition;
 import javafx.util.Duration;
@@ -14,28 +15,33 @@ public class SequentialCueViewModel extends GroupCueViewModel<SequentialCue> {
     public void buildAnimation() {
         SequentialTransition animation = new SequentialTransition();
 
-        getChildren().stream()
-                .map(vm -> {
-                    vm.buildAnimation();
-                    Animation ani = (Animation) vm.getAnimation().get();
+        AtomicInteger cuePoint = new AtomicInteger(0);
 
-                    ani.statusProperty().addListener((ov, oldVal, newVal) -> {
-                        switch (newVal) {
-                            case PAUSED:
-                                vm.setState(CueState.PAUSED);
-                                break;
-                            case RUNNING:
-                                vm.setState(CueState.PLAYING);
-                                break;
-                            case STOPPED:
-                                vm.setState(CueState.STOPPED);
-                                break;
-                        }
+        getChildren().stream()
+                .forEach(vm -> {
+                    final int cueNdx = cuePoint.getAndIncrement();
+                    vm.buildAnimation();
+
+                    vm.animationProperty().addListener((ov, oldVal, newVal) -> {
+                        Animation ani = (Animation) vm.getAnimation().get();
+
+                        ani.statusProperty().addListener((aov, aoldVal, anewVal) -> {
+                            switch (anewVal) {
+                                case PAUSED:
+                                    vm.setState(CueState.PAUSED);
+                                    break;
+                                case RUNNING:
+                                    vm.setState(CueState.PLAYING);
+                                    break;
+                                case STOPPED:
+                                    vm.setState(CueState.STOPPED);
+                                    break;
+                            }
+                        });
+                        animation.getChildren().add(ani);
                     });
 
-                    return ani;
-                })
-                .forEach(ani -> animation.getChildren().add(ani));
+                });
 
         setAnimation(animation);
 

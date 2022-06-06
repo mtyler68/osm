@@ -1,7 +1,9 @@
 package org.mattie.osm.app.viewcontrollers;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Screen;
@@ -50,6 +52,13 @@ public class ScreenViewController extends AbstractViewController {
     public void init() {
         log.debug("init()");
         ActionMap.register(this);
+    }
+
+    public Node getCurrentView() {
+        if (root != null && !root.getChildren().isEmpty()) {
+            return root.getChildren().get(0);
+        }
+        return null;
     }
 
     /**
@@ -131,6 +140,7 @@ public class ScreenViewController extends AbstractViewController {
                                 case PLAYING:
                                     clear();
                                     MediaView view = new MediaView(mcvm.getMediaPlayer());
+                                    view.setBlendMode(BlendMode.ADD);
                                     root.getChildren().add(view);
                                     break;
                                 case PAUSED:
@@ -145,8 +155,9 @@ public class ScreenViewController extends AbstractViewController {
 
     private void clear() {
         if (root != null) {
-            root.getChildren().stream()
-                    .forEach(c -> c.setVisible(false));
+            root.getChildren().clear();
+//            root.getChildren().stream()
+//                    .forEach(c -> c.setVisible(false));
         }
     }
 }
