@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mattie.osm.app.viewcontrollers.DmxKeyFrameViewController">
+   <children>
+      <ListView fx:id="keyFrameList" focusTraversable="false" VBox.vgrow="ALWAYS" />
+      <HBox>
+         <children>
+            <Label fx:id="positionLabel" focusTraversable="false" text="00:00:00.0" />
+            <Slider fx:id="timeSlider" focusTraversable="false" HBox.hgrow="ALWAYS" />
+            <Label fx:id="durationLabel" focusTraversable="false" text="00:00:00.0" />
+            <TextField fx:id="durationField" focusTraversable="false" prefColumnCount="5" promptText="Duration" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

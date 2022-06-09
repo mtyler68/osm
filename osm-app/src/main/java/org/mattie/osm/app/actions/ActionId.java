@@ -26,4 +26,6 @@ public final class ActionId {
     public final static String NEXT_CUE = "NEXT_CUE";
 
     public final static String TOGGLE_SCREEN = "TOGGLE_VIDEO";
+
+    public final static String TOGGLE_DMX_CONSOLE = "TOGGLE_DMX_CONSOLE";
 }

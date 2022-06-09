@@ -40,6 +40,7 @@ public class WindowActions {
         if (this.primaryStage == null) {
             this.primaryStage = evt.stage;
         }
+
     }
 
     @ActionProxy(id = ActionId.FULLSCREEN, text = "Fullscreen", graphic = "font>FontAwesome|EXPAND")

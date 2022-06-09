@@ -16,7 +16,8 @@
       <Separator focusTraversable="false" orientation="VERTICAL" />
     <Button fx:id="openButton" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" mnemonicParsing="false" text="Open" />
       <Separator focusTraversable="false" orientation="VERTICAL" />
-      <ToggleSwitch text="DMX" />
+      <ToggleSwitch fx:id="dmxToggle" text="DMX" />
+      <Button fx:id="dmxConsoleButton" focusTraversable="false" mnemonicParsing="false" text="DMX Console" />
       <Separator focusTraversable="false" orientation="VERTICAL" />
       <SplitMenuButton fx:id="toggleScreenButton" focusTraversable="false" mnemonicParsing="false" text="Screen">
         <items>

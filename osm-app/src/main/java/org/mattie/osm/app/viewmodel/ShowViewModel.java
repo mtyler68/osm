@@ -134,7 +134,7 @@ public class ShowViewModel {
     }
 
     public void playHotKey(String key) {
-        log.info("playHotKey('{}'): {}", key.toUpperCase(), this);
+        log.debug("playHotKey('{}'): {}", key.toUpperCase(), this);
         getHotKeyViewModels().stream()
                 .filter(vm -> vm.getHotKey().equalsIgnoreCase(key))
                 .findFirst().ifPresent(vm -> vm.play());

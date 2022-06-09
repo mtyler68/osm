@@ -56,7 +56,7 @@ public class FileActions implements ApplicationContextAware {
 
     @ActionProxy(id = ActionId.OPEN_SHOW, text = "Open...", graphic = "font>FontAwesome|FOLDER_OPEN")
     public void openShowAction() {
-        log.info("openShowAction()");
+        log.debug("openShowAction()");
 
         showController.stop();
         showOpenShowDialog()
@@ -98,7 +98,7 @@ public class FileActions implements ApplicationContextAware {
     }
 
     private void openShow(File showFile) {
-        log.info("openShow(): showFile={}", showFile);
+        log.debug("openShow(): showFile={}", showFile);
         try {
             Show show = Utils.getObjectMapper().readValue(showFile, Show.class);
             CueViewModelContext context = new CueViewModelContext()

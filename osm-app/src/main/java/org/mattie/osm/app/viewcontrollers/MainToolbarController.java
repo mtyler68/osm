@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.paint.Color;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.controlsfx.control.ToggleSwitch;
 import org.controlsfx.control.action.Action;
 import org.controlsfx.control.action.ActionMap;
 import org.controlsfx.control.action.ActionUtils;
@@ -12,7 +13,9 @@ import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
+import org.mattie.osm.app.DmxController;
 import org.mattie.osm.app.actions.ActionId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,6 +26,9 @@ import org.springframework.stereotype.Component;
 @Component
 @FxmlView("MainToolbar.fxml")
 public class MainToolbarController extends AbstractViewController {
+
+    @Autowired
+    private DmxController dmxController;
 
     @FXML
     public Button playPauseButton;
@@ -41,6 +47,12 @@ public class MainToolbarController extends AbstractViewController {
 
     @FXML
     public SplitMenuButton toggleScreenButton;
+
+    @FXML
+    public Button dmxConsoleButton;
+
+    @FXML
+    public ToggleSwitch dmxToggle;
 
     private GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
 
@@ -68,6 +80,11 @@ public class MainToolbarController extends AbstractViewController {
 
         // Screen Toggle
         configureGraphicOnlyActionButton(ActionId.TOGGLE_SCREEN, toggleScreenButton);
+
+        // DMX Console Toggle
+        configureGraphicOnlyActionButton(ActionId.TOGGLE_DMX_CONSOLE, dmxConsoleButton);
+
+        dmxToggle.selectedProperty().bindBidirectional(dmxController.dmxEnabledProperty());
     }
 
 }

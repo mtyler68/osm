@@ -6,16 +6,13 @@ import static org.mattie.osm.demo.Constants.resourceHeyGirl;
 import static org.mattie.osm.demo.Constants.resourceSurfacePressure;
 import static org.mattie.osm.demo.Constants.resourceTrustInMe;
 import static org.mattie.osm.demo.Cues.mediaCue;
-import static org.mattie.osm.demo.Cues.newSubIndex;
 import static org.mattie.osm.demo.Cues.nextIndex;
 import static org.mattie.osm.demo.Cues.noteCue;
-import static org.mattie.osm.demo.Cues.popSubIndex;
 import static org.mattie.osm.demo.Cues.richTextCue;
 import org.mattie.osm.model.MediaCue;
 import org.mattie.osm.model.MediaResource;
 import org.mattie.osm.model.NoteCue;
 import org.mattie.osm.model.RichTextCue;
-import org.mattie.osm.model.SequentialCue;
 import org.mattie.osm.model.Show;
 import org.mattie.osm.model.TriggerType;
 
@@ -172,16 +169,17 @@ public class SpringRecital22 {
         show.add(bbMoMusic);
 
         nextIndex();
-        MediaCue bbTuVid = mediaCue("BB Tu (video): Monkey See, Monkey Do", new MediaResource()
+        MediaCue bbTuVid = mediaCue("BB Tu (video): 5 Positions All in a Row", new MediaResource()
                 .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\BB Tu.mp4")
                 .setName("BB Tue Vid")
                 .setType(MediaResource.MediaType.AUDIO_VIDEO));
         show.add(bbTuVid);
 
         nextIndex();
-        MediaCue bbTuMusic = (MediaCue) mediaCue("BB Tu (music): Monkey See, Monkey Do", new MediaResource()
-                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\BB Tu - Monkey See, Monkey Do.mp3")
-                .setName("Monkey See, Monkey Do").setStopAt(Duration.parse("PT1M35S"))
+        MediaCue bbTuMusic = (MediaCue) mediaCue("BB Tu (music): 5 Positions All in a Row", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\BB Tu - 5 Positions All in a Row (Instrumental).mp3")
+                .setName("5 Positions All in a Row")
+                .setStopAt(Duration.parse("PT1M46S"))
                 .setFadeOut(Duration.ofSeconds(5)));
         show.add(bbTuMusic);
 
@@ -246,7 +244,21 @@ public class SpringRecital22 {
                 .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\TT Mo - Trashin' the Camp.mp3"));
         show.add(ttMoMusic);
 
-        // TT Mo
+        // TT We
+        nextIndex();
+        MediaCue ttWeVid = mediaCue("TT We (video): Hakuna Matata", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\TT We.mp4")
+                .setName("TT Wed Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(ttWeVid);
+
+        nextIndex();
+        MediaCue ttWe = (MediaCue) mediaCue("TT We: Hakuna Matata", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Leasa\\Twinkle Toes We - Hakuna Matata.mp3")
+                .setName("Hakuna Matata"));
+        show.add(ttWe);
+
+        // TT Fr
         nextIndex();
         MediaCue ttFrVid = mediaCue("TT Fr (video): Can You Feel the Love Tonight", new MediaResource()
                 .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\TT Fr.mp4")
@@ -259,6 +271,63 @@ public class SpringRecital22 {
                 .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\TT Fr - Can You Feel the Love Tonight.mp3")
                 .setFadeOut(Duration.ofSeconds(5)));
         show.add(ttFrMusic);
+
+        // KC Mo
+        nextIndex();
+        MediaCue kcMoVid = mediaCue("KC Mo (video): Upside Down", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\KC Mo.mp4")
+                .setName("KC Mon Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(kcMoVid);
+
+        nextIndex();
+        MediaCue kcMoMusic = (MediaCue) mediaCue("KC Mo (music): Upside Down", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\KC Mo - Upside Down.mp3")
+                .setStopAt(Duration.parse("PT1M40S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(kcMoMusic);
+
+        // KC We
+        nextIndex();
+        MediaCue kcWeVid = mediaCue("KC We (video): Jungle Book", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\KC We.mp4")
+                .setName("KC Wed Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(kcWeVid);
+
+        nextIndex();
+        MediaCue kcWe = (MediaCue) mediaCue("KC We: Jungle Book", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Leasa\\Kinder Combo We - Jungle Book.mp3")
+                .setStartAt(Duration.parse("PT54.6s"))
+                .setName("Jungle Book"));
+        show.add(kcWe);
+
+        // PC Mo
+        nextIndex();
+        MediaCue pcMoVid = mediaCue("PC Mo (video): Funky Monkey", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\PC Mo.mp4")
+                .setName("PC Mon Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(pcMoVid);
+
+        nextIndex();
+        MediaCue pcMoMusic = (MediaCue) mediaCue("PC Mo (music): Funky Monkey", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\PC Mo - Funky Monkey.mp3"));
+        show.add(pcMoMusic);
+
+        // PC We
+        nextIndex();
+        MediaCue pcWeVid = mediaCue("PC We (video): Monkey's Uncle", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Videos\\2022 Recital\\PC We.mp4")
+                .setName("PC Wed Vid")
+                .setType(MediaResource.MediaType.AUDIO_VIDEO));
+        show.add(pcWeVid);
+
+        nextIndex();
+        MediaCue pcWe = (MediaCue) mediaCue("PC We: Monkeys Uncle", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Leasa\\Primary Combo We - Monkeys Uncle.mp3")
+                .setName("Monkeys Uncle"));
+        show.add(pcWe);
 
         return show;
     }
@@ -346,20 +415,6 @@ public class SpringRecital22 {
         return show;
     }
 
-    private static void addMoanaAct1Cues(Show show) {
-
-        // Act Notes
-        SequentialCue actNotesSeq = Cues.sequentialCue("Act Notes");
-        newSubIndex();
-        NoteCue setupNote = noteCue("Stage: Sets", "Setup stage for Moana Act 1")
-                .setClearNotes(true);
-        nextIndex();
-        NoteCue micsNote = noteCue("Audio: Wireless Mics", "Pot up wireless mics for Moana Act 1");
-        popSubIndex();
-        actNotesSeq.add(setupNote, micsNote);
-        show.add(actNotesSeq);
-    }
-
     public static Show moanaScene1() {
         Show show = new Show()
                 .setName("Spring Recital 2022 - Moana Sc. 1");
@@ -393,8 +448,18 @@ public class SpringRecital22 {
         nextIndex();
         MediaCue whereURCue = (MediaCue) mediaCue("02 Where You Are", new MediaResource()
                 .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\02 Where You Are (Instrumental).mp3")
-                .setName("Where You Are (Instrumental)"));
+                .setName("Where You Are (Instrumental)")
+                .setStartAt(Duration.ofSeconds(15)));
         show.add(whereURCue);
+
+        nextIndex();
+        MediaCue whereURCue2Cue = (MediaCue) mediaCue("02 Where You Are", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\02 Where You Are (Instrumental).mp3")
+                .setName("Where You Are (Instrumental) playoff")
+                .setStartAt(Duration.ofSeconds(15))
+                .setStopAt(Duration.ofSeconds(35))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(whereURCue2Cue);
 
         nextIndex();
         MediaCue howFarCue = (MediaCue) mediaCue("03 How Far I'll Go", new MediaResource()
@@ -402,15 +467,168 @@ public class SpringRecital22 {
                 .setName("How Far I'll Go (Instrumental)"));
         show.add(howFarCue);
 
+        return show;
+    }
+
+    public static Show moanaScene2() {
+        Show show = new Show()
+                .setName("Spring Recital 2022 - Moana Sc. 2");
+
+        // Pre scene notes
+        NoteCue visualCue1 = noteCue("Visual Cue", "Fade '04 Battle of Wills' out after curtain open")
+                .setClearNotes(true);
+        show.add(visualCue1);
+
         nextIndex();
-        MediaCue whereURCue2 = (MediaCue) mediaCue("02 Where You Are", new MediaResource()
-                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\02 Where You Are (Instrumental).mp3")
-                .setName("Where You Are (Instrumental)")
-                .setStartAt(Duration.ofSeconds(15))
-                .setFadeIn(Duration.ofSeconds(5))
-                .setStopAt(Duration.ofSeconds(35))
-                .setFadeOut(Duration.ofSeconds(5)));
-        show.add(whereURCue2);
+        NoteCue beforeCurtainCue = (NoteCue) noteCue("Before Curtain", "Cue '04 Battle of Wills' music before curtain opens")
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(beforeCurtainCue);
+
+        // Script
+        nextIndex();
+        RichTextCue script = (RichTextCue) richTextCue("Moana Scene 2 Script",
+                Constants.MOANA_SC2_PG1,
+                Constants.MOANA_SC2_PG2,
+                Constants.MOANA_SC2_PG3)
+                .setClearPages(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(script);
+
+        nextIndex();
+        MediaCue battleCue = (MediaCue) mediaCue("04 Battle of Wills", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\04 Battle of Wills.mp3")
+                .setName("Battle of Wills"));
+        show.add(battleCue);
+
+        nextIndex();
+        NoteCue exitNoteCue = (NoteCue) noteCue("Transition out", "Cue '05 You're Welcome (Instrumental)' music for transition out after finish you're welcome")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(exitNoteCue);
+
+        nextIndex();
+        MediaCue welcomeCue = (MediaCue) mediaCue("05 You're Welcome (Instrumental)", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\05 You're Welcome (Instrumental).mp3")
+                .setName("You're Welcome")
+                .setStartAt(Duration.ofSeconds(9)));
+        show.add(welcomeCue);
+
+        nextIndex();
+        MediaCue welcome2Cue = (MediaCue) mediaCue("05 You're Welcome (Instrumental) - transition out", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\05 You're Welcome (Instrumental).mp3")
+                .setName("You're Welcome")
+                .setStartAt(Duration.ofSeconds(9))
+                .setFadeIn(Duration.ofSeconds(3))
+                .setStopAt(Duration.ofSeconds(24))
+                .setFadeOut(Duration.ofSeconds(4)));
+        show.add(welcome2Cue);
+
+        return show;
+    }
+
+    public static Show moanaScene3() {
+        Show show = new Show()
+                .setName("Spring Recital 2022 - Moana Sc. 3");
+
+        // Script
+        RichTextCue script = (RichTextCue) richTextCue("Moana Scene 3 Script",
+                Constants.MOANA_SC3_PG1)
+                .setClearPages(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(script);
+
+        nextIndex();
+        MediaCue shinyCue = (MediaCue) mediaCue("06 Shiny (Instrumental)", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\06 Shiny (Instrumental).mp3")
+                .setName("Shiny")
+                .setStartAt(Duration.ofSeconds(4)));
+        show.add(shinyCue);
+
+        nextIndex();
+        NoteCue exitNoteCue = (NoteCue) noteCue("Transition out", "Cue '06 Shiny (Instrumental)' music for transition out")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(exitNoteCue);
+
+        nextIndex();
+        MediaCue transOutCue = (MediaCue) mediaCue("06 Shiny (Instrumental)", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\06 Shiny (Instrumental).mp3")
+                .setName("Shiny")
+                .setStartAt(Duration.ofSeconds(17))
+                .setFadeIn(Duration.ofSeconds(3)));
+        show.add(transOutCue);
+
+        return show;
+    }
+
+    public static Show moanaScene4() {
+        Show show = new Show()
+                .setName("Spring Recital 2022 - Moana Sc. 4");
+
+        // Pre scene notes
+        NoteCue curtainCue = noteCue("Curtain Cue", "Cue '07 If I Were the Ocean' when curtain open")
+                .setClearNotes(true);
+        show.add(curtainCue);
+
+        // Script
+        nextIndex();
+        RichTextCue script = (RichTextCue) richTextCue("Moana Scene 4 Script",
+                Constants.MOANA_SC4_PG1,
+                Constants.MOANA_SC4_PG2)
+                .setClearPages(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(script);
+
+        nextIndex();
+        MediaCue transInCue = (MediaCue) mediaCue("07 If I Were the Ocean", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\07 If I Were the Ocean.mp3")
+                .setName("If I Were the Ocean")
+                .setStartAt(Duration.parse("PT2M43S"))
+                .setFadeIn(Duration.ofSeconds(3)));
+        show.add(transInCue);
+
+        nextIndex();
+        NoteCue visualCue1 = (NoteCue) noteCue("Visual Cue", "Cue '08 Teka Attacks' visually")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(visualCue1);
+
+        nextIndex();
+        MediaCue tekaAttacksCue = (MediaCue) mediaCue("08 Teka Attacks", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\08 Teka Attacks.mp3")
+                .setName("Teka Attacks"));
+        show.add(tekaAttacksCue);
+
+        nextIndex();
+        NoteCue visualCue2 = (NoteCue) noteCue("Visual Cue", "Cue '09 Tala Returns' visually")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(visualCue2);
+
+        nextIndex();
+        MediaCue talaReturnsCue = (MediaCue) mediaCue("09 Tala Returns", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\09 Tala Returns.mp3")
+                .setName("Tala Returns"));
+        show.add(talaReturnsCue);
+
+        nextIndex();
+        MediaCue iAmMoanaCue = (MediaCue) mediaCue("10 I Am Moana (Instrumental)", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\10 I Am Moana (Instrumental).mp3")
+                .setName("I Am Moana"));
+        show.add(iAmMoanaCue);
+
+        nextIndex();
+        MediaCue knowHowYouAre = (MediaCue) mediaCue("11 Know Who You Are (Instrumental)", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\11 Know Who You Are (Instrumental).mp3")
+                .setName("Know Who You Are"));
+        show.add(knowHowYouAre);
+
+        nextIndex();
+        MediaCue weKnowTheWayCue = (MediaCue) mediaCue("12 We Know The Way", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Moana Production\\12 We Know The Way.mp3")
+                .setName("We Know The Way")
+                .setStartAt(Duration.ofSeconds(11)));
+        show.add(weKnowTheWayCue);
 
         return show;
     }
@@ -436,7 +654,7 @@ public class SpringRecital22 {
     public static Show cinderellaSc2() {
         Show show = new Show().setName("Spring Recital 2022 - Cinderella Sc. 2");
 
-        for (int ndx = 3; ndx < 9; ndx++) {
+        for (int ndx = 3; ndx < 6; ndx++) {
             MediaResource resource = new MediaResource()
                     .setFile(String.format("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\0%1$d Track 0%1$d.mp3", ndx))
                     .setName(String.format("Track 0%d", ndx));
@@ -451,7 +669,30 @@ public class SpringRecital22 {
             nextIndex();
         }
 
-        NoteCue noteCue = (NoteCue) noteCue("Curtain Call", "Play Track 09 (next cue) for curtain call")
+        NoteCue noteCue = (NoteCue) noteCue("Black out", "Black out lights")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(noteCue);
+
+        return show;
+    }
+
+    public static Show cinderellaSc3() {
+        Show show = new Show().setName("Spring Recital 2022 - Cinderella Sc. 3");
+
+        for (int ndx = 6; ndx < 9; ndx++) {
+            MediaResource resource = new MediaResource()
+                    .setFile(String.format("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\0%1$d Track 0%1$d.mp3", ndx))
+                    .setName(String.format("Track 0%d", ndx));
+
+            MediaCue track = (MediaCue) mediaCue(String.format("Cinderella: Track 0%d", ndx), resource)
+                    .setTrigger(TriggerType.AUTO_START);
+            show.add(track);
+
+            nextIndex();
+        }
+
+        NoteCue noteCue = (NoteCue) noteCue("Curtain Call", "Play Track 09 (next cue) for curtain call - Fade when all dancers line up")
                 .setClearNotes(true)
                 .setTrigger(TriggerType.AUTO_START);
         show.add(noteCue);

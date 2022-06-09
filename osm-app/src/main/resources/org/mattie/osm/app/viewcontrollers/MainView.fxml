@@ -21,7 +21,7 @@
                             <items>
                                 <AnchorPane>
                                     <children>
-                                        <TitledPane animated="false" text="Notes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <TitledPane animated="false" focusTraversable="false" text="Notes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <content>
                                                 <fx:include source="NoteView.fxml" />
                                             </content>
@@ -33,13 +33,13 @@
                         </SplitPane>
                     </items>
                 </SplitPane>
-                <SplitPane dividerPositions="0.29797979797979796, 0.5">
+                <SplitPane dividerPositions="0.29797979797979796">
                     <items>
-                        <SplitPane focusTraversable="false" orientation="VERTICAL">
+                        <SplitPane dividerPositions="0.5" focusTraversable="false" orientation="VERTICAL">
                             <items>
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <TitledPane prefHeight="200.0" prefWidth="200.0" text="Media" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <TitledPane focusTraversable="false" prefHeight="200.0" prefWidth="200.0" text="Media" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <content>
                                                 <fx:include source="MediaScrubberListView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                             </content>
@@ -48,7 +48,7 @@
                                 </AnchorPane>
                                 <AnchorPane>
                                     <children>
-                                        <TitledPane animated="false" text="Media Playlist" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <TitledPane animated="false" focusTraversable="false" text="Media Playlist" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <content>
                                                 <fx:include source="MediaPlaylistView.fxml" />
                                             </content>
@@ -59,7 +59,7 @@
                         </SplitPane>
                         <AnchorPane>
                             <children>
-                                <TitledPane animated="false" text="Script" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <TitledPane animated="false" focusTraversable="false" text="Script" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <content>
                                         <fx:include source="RichTextView.fxml" />
                                     </content>
