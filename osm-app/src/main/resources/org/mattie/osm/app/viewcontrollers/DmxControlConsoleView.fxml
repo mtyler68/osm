@@ -45,13 +45,15 @@
         </MenuBar>
         <ToolBar VBox.vgrow="NEVER">
             <items>
+            <Button fx:id="playPauseButton" focusTraversable="false" mnemonicParsing="false" text="Play" />
+            <Separator focusTraversable="false" orientation="VERTICAL" />
                 <Button fx:id="allOnButton" focusTraversable="false" mnemonicParsing="false" text="All On" />
                 <Button fx:id="allOffButton" focusTraversable="false" mnemonicParsing="false" text="All Off" />
                 <Separator focusTraversable="false" orientation="VERTICAL" />
                 <Button fx:id="checkAllButton" focusTraversable="false" mnemonicParsing="false" text="Check All" />
                 <Button fx:id="uncheckAllButton" focusTraversable="false" mnemonicParsing="false" text="Uncheck All" />
             <Separator focusTraversable="false" orientation="VERTICAL" />
-            <Button fx:id="addKeyButton" mnemonicParsing="false" text="Key" />
+            <Button fx:id="addKeyButton" focusTraversable="false" mnemonicParsing="false" text="Key" />
             </items>
         </ToolBar>
         <SplitPane dividerPositions="0.5" orientation="VERTICAL" VBox.vgrow="ALWAYS">

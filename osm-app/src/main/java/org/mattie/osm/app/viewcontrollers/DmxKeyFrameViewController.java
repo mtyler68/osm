@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -89,14 +90,25 @@ public class DmxKeyFrameViewController {
         timeSlider.valueProperty().addListener((ov, oldVal, newVal) -> {
             Duration pos = Duration.seconds(newVal.doubleValue());
             setPlaybackPosition(pos);
-            timeline.jumpTo(pos);
+
+            timeline.playFrom(pos);
+
+            if (timeline.getStatus() != Animation.Status.RUNNING) {
+                timeline.pause();
+            }
+
         });
 
         playbackPosition.addListener((ov, oldVal, newVal) -> {
             positionLabel.setText(formatDuration(newVal));
+            timeSlider.setValue(newVal.toSeconds());
         });
 
         keyFrameList.setItems(keyFrames);
+
+        timeline.currentTimeProperty().addListener((ov, oldVal, newVal) -> {
+            setPlaybackPosition(newVal);
+        });
     }
 
     protected String formatDuration(Duration source) {
@@ -137,6 +149,15 @@ public class DmxKeyFrameViewController {
                 timeline.getKeyFrames().add(new KeyFrame(keyFrame1.getTime(), values.toArray(new KeyValue[values.size()])));
             }
             log.debug("timeline.keyFrames={}", timeline.getKeyFrames());
+            setPlaybackPosition(time);
+        }
+    }
+
+    public void togglePlayPause() {
+        if (timeline.getStatus() == Animation.Status.RUNNING) {
+            timeline.pause();
+        } else if (getPlaybackPosition() != null) {
+            timeline.playFrom(getPlaybackPosition());
         }
     }
 }

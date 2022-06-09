@@ -106,6 +106,9 @@ public class DmxControlConsoleViewController {
     @FXML
     public Button addKeyButton;
 
+    @FXML
+    public Button playPauseButton;
+
     private Preferences prefs;
 
     private int lastAddress = 1;
@@ -278,6 +281,8 @@ public class DmxControlConsoleViewController {
                     .map(c -> (DmxDimmerControlViewController) c.getUserData())
                     .forEach(vc -> vc.setValue(0));
         });
+
+        playPauseButton.setOnAction(evt -> keyFrameController.togglePlayPause());
     }
 
     /**
