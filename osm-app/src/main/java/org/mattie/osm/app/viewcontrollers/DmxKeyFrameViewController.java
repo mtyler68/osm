@@ -21,8 +21,8 @@ import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.mattie.osm.app.dmx.DmxKeyFrame;
-import org.mattie.osm.app.dmx.DmxKeyValue;
+import org.mattie.osm.model.dmx.DmxKeyFrame;
+import org.mattie.osm.model.dmx.DmxKeyValue;
 import org.springframework.stereotype.Component;
 
 /**
@@ -92,10 +92,10 @@ public class DmxKeyFrameViewController {
             setPlaybackPosition(pos);
 
             timeline.playFrom(pos);
-
-            if (timeline.getStatus() != Animation.Status.RUNNING) {
-                timeline.pause();
-            }
+            timeline.pause();
+//            if (timeline.getStatus() != Animation.Status.RUNNING) {
+//                timeline.pause();
+//            }
 
         });
 

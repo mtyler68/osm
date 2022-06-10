@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -39,6 +40,12 @@ import org.controlsfx.control.action.ActionProxy;
 import org.mattie.osm.app.DmxController;
 import org.mattie.osm.app.actions.ActionId;
 import org.mattie.osm.app.application.StageReadyEvent;
+import org.mattie.osm.app.events.ShowOpenedEvent;
+import org.mattie.osm.app.viewmodel.DmxCueViewModel;
+import org.mattie.osm.app.viewmodel.ShowViewModel;
+import org.mattie.osm.model.DmxCue;
+import org.mattie.osm.model.TriggerType;
+import org.mattie.osm.model.Utils;
 import org.mattie.osm.model.dmx.DmxChannel;
 import org.mattie.osm.model.dmx.DmxDimmerChannel;
 import org.mattie.osm.model.dmx.DmxSetup;
@@ -58,7 +65,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @FxmlView("DmxControlConsoleView.fxml")
-public class DmxControlConsoleViewController {
+public class DmxControlConsoleViewController extends AbstractViewController {
 
     @Autowired
     private DmxController dmxController;
@@ -109,6 +116,18 @@ public class DmxControlConsoleViewController {
     @FXML
     public Button playPauseButton;
 
+    @FXML
+    public MenuItem newKeyFramesMenuItem;
+
+    @FXML
+    public MenuItem openKeyFramesMenuItem;
+
+    @FXML
+    public MenuItem saveKeyFramesMenuItem;
+
+    @FXML
+    public MenuItem saveAsKeyFramesMenuItem;
+
     private Preferences prefs;
 
     private int lastAddress = 1;
@@ -116,6 +135,34 @@ public class DmxControlConsoleViewController {
     private ObjectProperty<File> dmxSetupFile = new SimpleObjectProperty<>();
 
     private BooleanProperty dmxSetupChanged = new SimpleBooleanProperty(false);
+
+    private BooleanProperty keyFramesChanged = new SimpleBooleanProperty(false);
+
+    private ObjectProperty<File> keyFramesFile = new SimpleObjectProperty<>();
+
+    public ReadOnlyObjectProperty<File> keyFramesFileProperty() {
+        return keyFramesFile;
+    }
+
+    public void setKeyFramesFile(File keyFramesFile) {
+        this.keyFramesFile.set(keyFramesFile);
+    }
+
+    public File getKeyFramesFile() {
+        return keyFramesFile.get();
+    }
+
+    public ReadOnlyBooleanProperty keyFramesChangedProperty() {
+        return keyFramesChanged;
+    }
+
+    public void setKeyFramesChanged(boolean keyFramesChanged) {
+        this.keyFramesChanged.set(keyFramesChanged);
+    }
+
+    public boolean isKeyFramesChanged() {
+        return keyFramesChanged.get();
+    }
 
     public ReadOnlyObjectProperty<File> dmxSetupFileProperty() {
         return dmxSetupFile;
@@ -147,6 +194,7 @@ public class DmxControlConsoleViewController {
         ActionMap.register(this);
 
         prefs = Preferences.userNodeForPackage(DmxControlConsoleViewController.class);
+
     }
 
     /**
@@ -270,19 +318,34 @@ public class DmxControlConsoleViewController {
             setDmxSetupFile(null);
         });
 
-        allOnButton.setOnAction(evt -> {
-            controlsList.getChildren().stream()
-                    .map(c -> (DmxDimmerControlViewController) c.getUserData())
-                    .forEach(vc -> vc.setValue(100));
-        });
-
-        allOffButton.setOnAction(evt -> {
-            controlsList.getChildren().stream()
-                    .map(c -> (DmxDimmerControlViewController) c.getUserData())
-                    .forEach(vc -> vc.setValue(0));
-        });
+        configureActionButton(ActionId.DMX_ALL_ON, allOnButton);
+        configureActionButton(ActionId.DMX_ALL_OFF, allOffButton);
 
         playPauseButton.setOnAction(evt -> keyFrameController.togglePlayPause());
+
+        newKeyFramesMenuItem.setOnAction(evt -> {
+            keyFrameController.keyFrameList.getItems().clear();
+            setKeyFramesChanged(false);
+            setKeyFramesFile(null);
+        });
+
+        saveKeyFramesMenuItem.setOnAction(this::saveKeyFrames);
+        saveAsKeyFramesMenuItem.setOnAction(this::saveAsKeyFrames);
+
+    }
+
+    @ActionProxy(id = ActionId.DMX_ALL_ON, text = "DMX All On")
+    public void dmxAllOnAction() {
+        controlsList.getChildren().stream()
+                .map(c -> (DmxDimmerControlViewController) c.getUserData())
+                .forEach(vc -> vc.turnOn());
+    }
+
+    @ActionProxy(id = ActionId.DMX_ALL_OFF, text = "DMX All Off")
+    public void dmxAllOffAction() {
+        controlsList.getChildren().stream()
+                .map(c -> (DmxDimmerControlViewController) c.getUserData())
+                .forEach(vc -> vc.turnOff());
     }
 
     /**
@@ -306,6 +369,33 @@ public class DmxControlConsoleViewController {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == save) {
                 save(evt);
+            } else if (result.get() == cancel) {
+                evt.consume();
+            }
+        }
+    }
+
+    /**
+     * If the event is consumed, then the save action was cancelled.
+     *
+     * @param evt
+     */
+    private void trySaveKeyFrames(Event evt) {
+        if (isKeyFramesChanged()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Key Frames Changed");
+            alert.setHeaderText("Key Frame Changes");
+            alert.setContentText("Key Frames have changed. What would you like to do?");
+
+            ButtonType save = new ButtonType("Save");
+            ButtonType discard = new ButtonType("Discard");
+            ButtonType cancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(save, discard, cancel);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == save) {
+                saveKeyFrames(evt);
             } else if (result.get() == cancel) {
                 evt.consume();
             }
@@ -343,6 +433,40 @@ public class DmxControlConsoleViewController {
         }
     }
 
+    private void saveAsKeyFrames(Event evt) {
+        try {
+            String lastKeyFramesPath = prefs.get("keyFrames.path", null);
+            File lastPath = null;
+            if (lastKeyFramesPath != null) {
+                lastPath = new File(lastKeyFramesPath);
+            }
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Key Frames As");
+            if (lastPath != null && lastPath.exists()) {
+                fileChooser.setInitialDirectory(lastPath);
+            }
+            File keyFramesFile = fileChooser.showSaveDialog(dmxStage);
+
+            if (keyFramesFile != null) {
+
+                prefs.put("keyFrames.path", keyFramesFile.getParentFile().getAbsolutePath());
+                prefs.flush();
+
+                if (!keyFramesFile.getName().endsWith(".yaml")) {
+                    keyFramesFile = new File(keyFramesFile.getPath() + ".yaml");
+                }
+
+                setKeyFramesFile(keyFramesFile);
+                saveKeyFrames(evt);
+            } else {
+                evt.consume();
+            }
+        } catch (Exception ex) {
+            log.error("Exception while saving key frames as", ex);
+        }
+    }
+
     /**
      * Saves the current DMX setup. Will perform a Save As if not file is
      * currently specified.
@@ -356,6 +480,29 @@ public class DmxControlConsoleViewController {
                 setDmxSetupChanged(false);
             } else {
                 saveAs(evt);
+            }
+        } catch (Exception ex) {
+            log.error("Error saving file", ex);
+        }
+    }
+
+    private void saveKeyFrames(Event evt) {
+        try {
+            if (getKeyFramesFile() != null) {
+                TextInputDialog textInputDialog = new TextInputDialog("1");
+                textInputDialog.setTitle("Enter Hot Key Value");
+                textInputDialog.setContentText("Enter hot key value");
+                Optional<String> showAndWait = textInputDialog.showAndWait();
+
+                DmxCue dmxCue = (DmxCue) new DmxCue()
+                        .setTrigger(TriggerType.HOT_KEY)
+                        .setTriggerProp("hotKey", textInputDialog.getEditor().getText());
+                keyFrameController.keyFrameList.getItems().stream()
+                        .forEach(dmxCue::add);
+                Utils.getObjectMapper().writeValue(getKeyFramesFile(), dmxCue);
+                setKeyFramesChanged(false);
+            } else {
+                saveAsKeyFrames(evt);
             }
         } catch (Exception ex) {
             log.error("Error saving file", ex);
@@ -479,6 +626,42 @@ public class DmxControlConsoleViewController {
         controlsList.getChildren().add(dmxDimmerCV.getView().get());
 
         lastAddress = channel.getAddresses()[0] + 1;
+    }
+
+    @EventListener
+    public void showOpenedHandler(ShowOpenedEvent evt) {
+        log.info("showOpenedHandler()");
+        ShowViewModel showViewModel = evt.getShowViewModel();
+
+        configureCues(showViewModel.getHotKeyViewModels(),
+                ((cvm) -> cvm instanceof DmxCueViewModel),
+                ((cvm) -> configure((DmxCueViewModel) cvm)));
+    }
+
+    public DmxDimmerControlViewController getDmxControllerForAddress(int address) {
+        for (Node node : controlsList.getChildren()) {
+            if (((DmxDimmerControlViewController) node.getUserData()).getAddress() == address) {
+                return (DmxDimmerControlViewController) node.getUserData();
+            }
+        }
+        return null;
+    }
+
+    private void configure(DmxCueViewModel dmxCueViewModel) {
+        log.info("binding DMX cues");
+//        dmxCueViewModel.getKeyFrames().stream().forEach(kf -> {
+//
+////            for (DmxKeyValue value : kf.getValues()) {
+////                DmxDimmerControlViewController controller = getDmxControllerForAddress(value.getAddress());
+////                log.info("bind to address {}", value.getAddress());
+////                if (controller != null) {
+////                    log.info("bind to address {}, controller not null", value.getAddress());
+////                    //controller.valueProperty().bind(dmxCueViewModel.getValues().get(value.getAddress() - 1));
+////                    //dmxCueViewModel.getValues().get(value.getAddress() - 1).bind(controller.valueProperty());
+////                }
+////            }
+//
+//        });
     }
 
 }

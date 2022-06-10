@@ -237,11 +237,11 @@ public class Constants {
             + "\n"
             + "<p><u><strong><span style=\"background-color:#00FF00;\">Gramma Tala:</span></strong></u> You are a long ways past the reef Moana. (Start fade 09 Tala Returns)</p>\n"
             + "\n"
-            + "<p><u><strong><span style=\"background-color:#00FF00;\">Moana:</span></strong></u> Gramma! I tried Gramma,( start SOng 10) I just couldn&rsquo;t do it.</p>\n"
-            + "\n"
-            + "<h3 style=\"text-align: center;\"><span style=\"background-color: rgb(255, 160, 122);\">SONG 10&nbsp;I am Moana</span></h3>\n"
+            + "<p><u><strong><span style=\"background-color:#00FF00;\">Moana:</span></strong></u> Gramma! I tried Gramma, I just couldn&rsquo;t do it.</p>\n"
             + "\n"
             + "<p><u><strong><span style=\"background-color:#00FF00;\">Gramma Tala:</span></strong></u> I know a girl from an island She stands apart from the crowd She loves the sea and her people. She makes her family proud.</p>\n"
+            + "\n"
+            + "<h3 style=\"text-align: center;\"><span style=\"background-color: rgb(255, 160, 122);\">SONG 10&nbsp;I am Moana</span></h3>\n"
             + "</body>\n"
             + "</html>";
 

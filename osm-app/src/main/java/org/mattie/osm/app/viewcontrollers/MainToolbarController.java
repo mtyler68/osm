@@ -54,6 +54,12 @@ public class MainToolbarController extends AbstractViewController {
     @FXML
     public ToggleSwitch dmxToggle;
 
+    @FXML
+    public Button allOnButton;
+
+    @FXML
+    public Button allOffButton;
+
     private GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
 
     @FXML
@@ -85,6 +91,9 @@ public class MainToolbarController extends AbstractViewController {
         configureGraphicOnlyActionButton(ActionId.TOGGLE_DMX_CONSOLE, dmxConsoleButton);
 
         dmxToggle.selectedProperty().bindBidirectional(dmxController.dmxEnabledProperty());
+
+        configureActionButton(ActionId.DMX_ALL_ON, allOnButton);
+        configureActionButton(ActionId.DMX_ALL_OFF, allOffButton);
     }
 
 }

@@ -1,3 +1,4 @@
+org.mattie.osm.model.DmxCue
 org.mattie.osm.model.MediaCue
 org.mattie.osm.model.MediaPlaylistCue
 org.mattie.osm.model.NoteCue

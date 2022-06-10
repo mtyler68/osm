@@ -125,4 +125,12 @@ public class DmxDimmerControlViewController {
                 .setName(nameText.getText());
     }
 
+    public void turnOn() {
+        setValue(100);
+    }
+
+    public void turnOff() {
+        setValue(0);
+    }
+
 }

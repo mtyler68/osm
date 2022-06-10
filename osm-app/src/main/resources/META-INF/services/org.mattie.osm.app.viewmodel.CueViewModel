@@ -1,3 +1,4 @@
+org.mattie.osm.app.viewmodel.DmxCueViewModel
 org.mattie.osm.app.viewmodel.MediaCueViewModel
 org.mattie.osm.app.viewmodel.MediaPlaylistCueViewModel
 org.mattie.osm.app.viewmodel.NoteCueViewModel

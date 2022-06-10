@@ -28,4 +28,8 @@ public final class ActionId {
     public final static String TOGGLE_SCREEN = "TOGGLE_VIDEO";
 
     public final static String TOGGLE_DMX_CONSOLE = "TOGGLE_DMX_CONSOLE";
+
+    public final static String DMX_ALL_ON = "DMX_ALL_ON";
+
+    public final static String DMX_ALL_OFF = "DMX_ALL_OFF";
 }

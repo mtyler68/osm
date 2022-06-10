@@ -6,6 +6,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToolBar?>
@@ -19,6 +20,11 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
+                  <MenuItem fx:id="newKeyFramesMenuItem" mnemonicParsing="false" text="New Key Frames" />
+                  <MenuItem fx:id="openKeyFramesMenuItem" mnemonicParsing="false" text="Open Key Frames..." />
+                  <MenuItem fx:id="saveKeyFramesMenuItem" mnemonicParsing="false" text="Save Key Framess" />
+                  <MenuItem fx:id="saveAsKeyFramesMenuItem" mnemonicParsing="false" text="Save Key Frames As..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="newDmxSetupMenuItem" mnemonicParsing="false" text="New DMX Setup" />
                         <MenuItem fx:id="openDmxSetupButton" mnemonicParsing="false" text="Open DMX Setup..." />
                         <MenuItem fx:id="saveDmxSetupButton" mnemonicParsing="false" text="Save DMX Setup" />

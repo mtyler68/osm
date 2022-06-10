@@ -1,4 +1,4 @@
-package org.mattie.osm.app.dmx;
+package org.mattie.osm.model.dmx;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

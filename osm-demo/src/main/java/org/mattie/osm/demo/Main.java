@@ -11,6 +11,7 @@ import static org.mattie.osm.demo.Cues.parallelCue;
 import static org.mattie.osm.demo.Cues.popSubIndex;
 import static org.mattie.osm.demo.Cues.sequentialCue;
 import org.mattie.osm.model.Cue;
+import org.mattie.osm.model.DmxCue;
 import org.mattie.osm.model.MediaCue;
 import org.mattie.osm.model.MediaResource;
 import org.mattie.osm.model.NoteCue;
@@ -34,20 +35,20 @@ public class Main {
 //        generateDemo(oneMediaCueInSequenceWithDelay(), "one_media_cue_in_sequence_with_delay");
 //        generateDemo(SpringRecital22.springRecital2022(), "2022_spring_recital");
 
-        generateDemo(SpringRecital22.openHouseCues(), "2022_spring_recital_open_house");
+        generateDemo(includeDmxHotKeys(SpringRecital22.openHouseCues()), "2022_spring_recital_01_open_house");
+        generateDemo(includeDmxHotKeys(SpringRecital22.danceFunBoogieBabies()), "2022_spring_recital_02_dancefun_boogiebabies");
+        generateDemo(includeDmxHotKeys(SpringRecital22.ttKcPc()), "2022_spring_recital_03_tt_kc_pc");
 
-        generateDemo(SpringRecital22.trevor2022(), "2022_spring_recital_trevor");
-        generateDemo(SpringRecital22.danceFunBoogieBabies(), "2022_spring_recital_dancefun_boogiebabies");
-        generateDemo(SpringRecital22.ttKcPc(), "2022_spring_recital_tt_kc_pc");
+        generateDemo(includeDmxHotKeys(SpringRecital22.trevor2022()), "2022_spring_recital_trevor");
 
-        generateDemo(SpringRecital22.moanaScene1(), "2022_spring_recital_moana_sc1");
-        generateDemo(SpringRecital22.moanaScene2(), "2022_spring_recital_moana_sc2");
-        generateDemo(SpringRecital22.moanaScene3(), "2022_spring_recital_moana_sc3");
-        generateDemo(SpringRecital22.moanaScene4(), "2022_spring_recital_moana_sc4");
+        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene1()), "2022_spring_recital_moana_sc1");
+        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene2()), "2022_spring_recital_moana_sc2");
+        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene3()), "2022_spring_recital_moana_sc3");
+        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene4()), "2022_spring_recital_moana_sc4");
 
-        generateDemo(SpringRecital22.cinderellaSc1(), "2022_spring_recital_cinderella_sc1");
-        generateDemo(SpringRecital22.cinderellaSc2(), "2022_spring_recital_cinderella_sc2");
-        generateDemo(SpringRecital22.cinderellaSc3(), "2022_spring_recital_cinderella_sc3");
+        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc1()), "2022_spring_recital_cinderella_sc1");
+        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc2()), "2022_spring_recital_cinderella_sc2");
+        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc3()), "2022_spring_recital_cinderella_sc3");
 
 //        generateDmxConfig(DmxPrograms.dmxSetup(), "2022_spring_recital_dmx_config");
     }
@@ -64,6 +65,15 @@ public class Main {
 
         DmxSetup readValue = DmxUtils.getObjectMapper().readValue(file, DmxSetup.class);
         System.out.println(title + " (r): " + readValue);
+    }
+
+    private static Show includeDmxHotKeys(Show show) throws IOException {
+        DmxCue blueStage = Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\bluestage.yaml"), DmxCue.class);
+        blueStage.setDesc("Blue Stage");
+        show.add(blueStage);
+
+        return show;
     }
 
     private static void generateDemo(Show show, String title) throws IOException {
