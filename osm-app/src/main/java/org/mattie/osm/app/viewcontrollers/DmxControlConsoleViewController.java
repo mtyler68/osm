@@ -214,6 +214,41 @@ public class DmxControlConsoleViewController extends AbstractViewController {
         // Save
         saveDmxSetupButton.disableProperty().bind(Bindings.not(dmxSetupChanged));
 
+        openKeyFramesMenuItem.setOnAction(evt -> {
+            trySaveKeyFrames(evt);
+            if (!evt.isConsumed()) {
+                String path = prefs.get("keyFrames.path", null);
+                File lastPath = null;
+                if (path != null) {
+                    lastPath = new File(path);
+                }
+
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open Key Frames");
+                if (lastPath != null && lastPath.exists()) {
+                    fileChooser.setInitialDirectory(lastPath);
+                }
+                final File keyFramesFile = fileChooser.showOpenDialog(dmxStage);
+                if (this.keyFramesFile != null) {
+                    prefs.put("keyFrames.path", keyFramesFile.getParentFile().getAbsolutePath());
+                    try {
+                        prefs.flush();
+
+                        DmxCue dmxCue = Utils.getObjectMapper().readValue(keyFramesFile, DmxCue.class);
+                        loadKeyFrames(dmxCue);
+
+                        setKeyFramesFile(keyFramesFile);
+                        setKeyFramesChanged(false);
+
+                    } catch (Exception ex) {
+                        log.error("Exception while opening key frames", ex);
+                    }
+                } else {
+                    evt.consume();
+                }
+            }
+        });
+
         // Open
         openDmxSetupButton.setOnAction(evt -> {
             trySave(evt);
@@ -549,6 +584,7 @@ public class DmxControlConsoleViewController extends AbstractViewController {
     }
 
     private void clear() {
+
         lastAddress = 1;
         controlsList.getChildren().clear();
     }
@@ -662,6 +698,10 @@ public class DmxControlConsoleViewController extends AbstractViewController {
 ////            }
 //
 //        });
+    }
+
+    private void loadKeyFrames(DmxCue dmxCue) {
+
     }
 
 }

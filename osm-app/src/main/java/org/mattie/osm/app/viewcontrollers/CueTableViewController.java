@@ -38,7 +38,7 @@ import org.springframework.stereotype.Component;
 @Component
 @FxmlView("CueTableView.fxml")
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class CueTableViewController {
+public class CueTableViewController extends AbstractViewController {
 
     @Autowired
     private ShowController showController;
@@ -89,7 +89,7 @@ public class CueTableViewController {
         lengthColumn.setCellValueFactory(new TreeItemPropertyValueFactory("duration"));
         currentColumn.setCellValueFactory(new TreeItemPropertyValueFactory("currentTime"));
 
-        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         final Action playFromSelectedAction = ActionMap.action(ActionId.PLAY_FROM_SELECTED);
         ActionUtils.configureMenuItem(playFromSelectedAction, playFromSelectedMenuItem);

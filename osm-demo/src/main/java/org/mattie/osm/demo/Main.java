@@ -36,21 +36,20 @@ public class Main {
 //        generateDemo(SpringRecital22.springRecital2022(), "2022_spring_recital");
 
         generateDemo(includeDmxHotKeys(SpringRecital22.openHouseCues()), "2022_spring_recital_01_open_house");
-        generateDemo(includeDmxHotKeys(SpringRecital22.danceFunBoogieBabies()), "2022_spring_recital_02_dancefun_boogiebabies");
-        generateDemo(includeDmxHotKeys(SpringRecital22.ttKcPc()), "2022_spring_recital_03_tt_kc_pc");
+        generateDemo(includeDmxHotKeys(SpringRecital22.entireShow()), "2022_spring_recital_02_entire_show");
 
-        generateDemo(includeDmxHotKeys(SpringRecital22.trevor2022()), "2022_spring_recital_trevor");
+//        generateDemo(includeDmxHotKeys(SpringRecital22.danceFunBoogieBabies()), "2022_spring_recital_02_dancefun_boogiebabies");
+//        generateDemo(includeDmxHotKeys(SpringRecital22.ttKcPc()), "2022_spring_recital_03_tt_kc_pc");
+//
+//        generateDemo(includeDmxHotKeys(SpringRecital22.trevor2022()), "2022_spring_recital_04_trevor");
+        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene1()), "2022_spring_recital_06_moana_sc1");
+        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene2()), "2022_spring_recital_06_moana_sc2");
+        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene3()), "2022_spring_recital_06_moana_sc3");
+        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene4()), "2022_spring_recital_06_moana_sc4");
 
-        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene1()), "2022_spring_recital_moana_sc1");
-        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene2()), "2022_spring_recital_moana_sc2");
-        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene3()), "2022_spring_recital_moana_sc3");
-        generateDemo(includeDmxHotKeys(SpringRecital22.moanaScene4()), "2022_spring_recital_moana_sc4");
-
-        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc1()), "2022_spring_recital_cinderella_sc1");
-        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc2()), "2022_spring_recital_cinderella_sc2");
-        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc3()), "2022_spring_recital_cinderella_sc3");
-
-//        generateDmxConfig(DmxPrograms.dmxSetup(), "2022_spring_recital_dmx_config");
+//        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc1()), "2022_spring_recital_05_cinderella_sc1");
+//        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc2()), "2022_spring_recital_05_cinderella_sc2");
+//        generateDemo(includeDmxHotKeys(SpringRecital22.cinderellaSc3()), "2022_spring_recital_05_cinderella_sc3");
     }
 
     private static void generateDmxConfig(DmxSetup dmxSetup, String title) throws IOException {
@@ -68,10 +67,62 @@ public class Main {
     }
 
     private static Show includeDmxHotKeys(Show show) throws IOException {
-        DmxCue blueStage = Utils.getObjectMapper().readValue(
-                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\bluestage.yaml"), DmxCue.class);
-        blueStage.setDesc("Blue Stage");
-        show.add(blueStage);
+        DmxCue hk1 = Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\1_all_on.yaml"), DmxCue.class);
+        hk1.setDesc("All On");
+        show.add(hk1);
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\Q_all_off.yaml"), DmxCue.class)
+                .setDesc("All Off"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\2_all_75_pct.yaml"), DmxCue.class)
+                .setDesc("All 75%"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\3_all_50_pct.yaml"), DmxCue.class)
+                .setDesc("All 50%"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\4_all_wht_down_on.yaml"), DmxCue.class)
+                .setDesc("All White Down On"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\R_all_wht_down_off.yaml"), DmxCue.class)
+                .setDesc("All White Down Off"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\5_all_wht_rear_on.yaml"), DmxCue.class)
+                .setDesc("All White Rear On"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\T_all_wht_rear_off.yaml"), DmxCue.class)
+                .setDesc("All White Rear Off"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\6_all_blue_on.yaml"), DmxCue.class)
+                .setDesc("All Blue On"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\Y_all_blue_off.yaml"), DmxCue.class)
+                .setDesc("All Blue Off"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\7_all_red_on.yaml"), DmxCue.class)
+                .setDesc("All Red On"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\U_all_read_off.yaml"), DmxCue.class)
+                .setDesc("All Red Off"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\8_all_green_on.yaml"), DmxCue.class)
+                .setDesc("All Green On"));
+
+        show.add(Utils.getObjectMapper().readValue(
+                new File("C:\\projects\\shows\\22recital\\dmxkeyframes\\I_all_green_off.yaml"), DmxCue.class)
+                .setDesc("All Green Off"));
 
         return show;
     }

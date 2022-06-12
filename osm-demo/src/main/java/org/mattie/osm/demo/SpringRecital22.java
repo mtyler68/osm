@@ -709,4 +709,253 @@ public class SpringRecital22 {
         show.add(track09);
         return show;
     }
+
+    public static Show entireShow() {
+        Show show = new Show().setName("Spring Recital 2022 - Entire Show");
+
+        // BB Mo
+        MediaCue bbMoMusic = (MediaCue) mediaCue("BB Mo (music): Take You To Rio", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\BB Mo - Take You To Rio.mp3")
+                .setName("Take You To Rio").setStopAt(Duration.parse("PT1M59S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(bbMoMusic);
+
+        // DF Tu
+        nextIndex();
+        MediaCue dfTuMusic = (MediaCue) mediaCue("DF Tu (music): I Like To Move It", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\DF Tu - I Like To Move It.mp3")
+                .setName("I Like To Move It")
+                .setStopAt(Duration.parse("PT1M22S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(dfTuMusic);
+
+        // BB Fr PM
+        nextIndex();
+        MediaCue bbFrPmMusic = (MediaCue) mediaCue("BB Fr PM (music): Love Will Find a Way", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\BB Fr PM - Love Will Find a Way.mp3")
+                .setName("Love Will Find a Way")
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(bbFrPmMusic);
+
+        // DF Mo
+        nextIndex();
+        MediaCue dfMoMusic = (MediaCue) mediaCue("DF Mo (music): The Tiki, Tiki, Tiki Room", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\DF Mo - The Tiki, Tiki, Tiki Room.mp3")
+                .setName("The Tiki, Tiki, Tiki Room")
+                .setStopAt(Duration.parse("PT1M41S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(dfMoMusic);
+
+        // BB Tu
+        nextIndex();
+        MediaCue bbTuMusic = (MediaCue) mediaCue("BB Tu (music): 5 Positions All in a Row", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\BB Tu - 5 Positions All in a Row (Instrumental).mp3")
+                .setName("5 Positions All in a Row")
+                .setStopAt(Duration.parse("PT1M46S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(bbTuMusic);
+
+        // DF Fr
+        nextIndex();
+        MediaCue dfFrMusic = (MediaCue) mediaCue("DF Fr (music): Ballet Dancing Bears", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\DF Fr - Ballet Dancing Bears.mp3")
+                .setName("Ballet Dancing Bears"));
+        show.add(dfFrMusic);
+
+        // BB Fr
+        nextIndex();
+        MediaCue bbFrMusic = (MediaCue) mediaCue("BB Fr (music): You'll Be In My Heart", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\BB Fr - Youll Be In My Heart.mp3")
+                .setName("You'll Be In My Heart"));
+        show.add(bbFrMusic);
+
+        // Private Ballet
+        nextIndex();
+        MediaCue pbgMusic = (MediaCue) mediaCue("PBG (music): Bear Necessities", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\Private Ballet Fr - Bear Necessities.mp3")
+                .setName("Bear Necessities"));
+        show.add(pbgMusic);
+
+        Cues.newSubIndex();
+        NoteCue collectAct8Cue = (NoteCue) noteCue("Release 2-4 year olds", "Collect your dancers")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(collectAct8Cue);
+        Cues.popSubIndex();
+
+        // KC We
+        nextIndex();
+        MediaCue kcWe = (MediaCue) mediaCue("KC We (music): Jungle Book", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Leasa\\Kinder Combo We - Jungle Book.mp3")
+                .setStartAt(Duration.parse("PT54.6s"))
+                .setName("Jungle Book"));
+        show.add(kcWe);
+
+        // TT Mo
+        nextIndex();
+        MediaCue ttMoMusic = (MediaCue) mediaCue("TT Mo (music): Trashin' The Camp", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\TT Mo - Trashin' the Camp.mp3"));
+        show.add(ttMoMusic);
+
+        // KC Mo
+        nextIndex();
+        MediaCue kcMoMusic = (MediaCue) mediaCue("KC Mo (music): Upside Down", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\KC Mo - Upside Down.mp3")
+                .setStopAt(Duration.parse("PT1M40S"))
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(kcMoMusic);
+
+        // TT We
+        nextIndex();
+        MediaCue ttWe = (MediaCue) mediaCue("TT We (music): Hakuna Matata", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Leasa\\Twinkle Toes We - Hakuna Matata.mp3")
+                .setName("Hakuna Matata"));
+        show.add(ttWe);
+
+        // TT Fr
+        nextIndex();
+        MediaCue ttFrMusic = (MediaCue) mediaCue("TT Fr (music): Can You Feel the Love Tonight", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Hannah\\TT Fr - Can You Feel the Love Tonight.mp3")
+                .setFadeOut(Duration.ofSeconds(5)));
+        show.add(ttFrMusic);
+
+        // PC We
+        nextIndex();
+        MediaCue pcWe = (MediaCue) mediaCue("PC We (music): Monkeys Uncle", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Leasa\\Primary Combo We - Monkeys Uncle.mp3")
+                .setName("Monkeys Uncle"));
+        show.add(pcWe);
+
+        // Jazz 2/3
+        nextIndex();
+        MediaCue heyGirlCue = mediaCue("Jazz 2/3 (music): Hey Girl",
+                resourceHeyGirl()
+                        .setStopAt(Duration.parse("PT3M2.7S")));
+        show.add(heyGirlCue);
+
+        // PC Mo
+        nextIndex();
+        MediaCue pcMoMusic = (MediaCue) mediaCue("PC Mo (music): Funky Monkey", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Lily\\PC Mo - Funky Monkey.mp3"));
+        show.add(pcMoMusic);
+
+        Cues.newSubIndex();
+        NoteCue collectAct16Cue = (NoteCue) noteCue("Release 4-7 year olds", "Collect your dancers")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(collectAct16Cue);
+        Cues.popSubIndex();
+
+        // Mini-Hop
+        nextIndex();
+        MediaCue miniMusic = mediaCue("Mini-Hop (music): Surface Pressure",
+                resourceSurfacePressure()
+                        .setStopAt(Duration.parse("PT1M42.7S")));
+        show.add(miniMusic);
+
+        // Cinderella Act 1
+        nextIndex();
+        MediaCue track01 = (MediaCue) mediaCue("Cinderella: Track 01", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\01 Track 01.mp3")
+                .setName("Track 01"));
+        show.add(track01);
+
+        Cues.newSubIndex();
+        MediaCue track02 = (MediaCue) mediaCue("Cinderella: Track 02", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\02 Track 02.mp3")
+                .setName("Track 02"))
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(track02);
+        Cues.popSubIndex();
+
+        // Contemporary
+        nextIndex();
+        MediaCue trustInMeCue = mediaCue("Contemporary (music): Trust In Me",
+                resourceTrustInMe()
+                        .setStopAt(Duration.parse("PT2M18S"))
+                        .setFadeOut(Duration.ofSeconds(5)));
+        show.add(trustInMeCue);
+
+        // Cinderella Act 2
+        for (int ndx = 3; ndx < 6; ndx++) {
+            MediaResource resource = new MediaResource()
+                    .setFile(String.format("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\0%1$d Track 0%1$d.mp3", ndx))
+                    .setName(String.format("Track 0%d", ndx));
+            if (ndx == 3) {
+                resource.setStopAt(Duration.parse("PT2M57.5S"));
+            }
+
+            if (ndx == 4) {
+                Cues.newSubIndex();
+            } else {
+                nextIndex();
+            }
+
+            MediaCue track = (MediaCue) mediaCue(String.format("Cinderella: Track 0%d", ndx), resource);
+            if (ndx > 3) {
+                track.setTrigger(TriggerType.AUTO_START);;
+            }
+
+            show.add(track);
+
+        }
+
+        nextIndex();
+        NoteCue noteCue = (NoteCue) noteCue("Black out", "Black out lights")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(noteCue);
+        Cues.popSubIndex();
+
+        // Hip-Hop 1
+        nextIndex();
+        MediaCue burnItUpCue = mediaCue("Hip-Hop 1 (music): Burn It Up",
+                resourceBurnItUp()
+                        .setStopAt(Duration.parse("PT3M28S")));
+        show.add(burnItUpCue);
+
+        // Cinderella Act 3
+        for (int ndx = 6; ndx < 9; ndx++) {
+            MediaResource resource = new MediaResource()
+                    .setFile(String.format("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\0%1$d Track 0%1$d.mp3", ndx))
+                    .setName(String.format("Track 0%d", ndx));
+
+            if (ndx == 7) {
+                Cues.newSubIndex();
+            } else {
+                nextIndex();
+            }
+
+            MediaCue track = (MediaCue) mediaCue(String.format("Cinderella: Track 0%d", ndx), resource);
+            if (ndx > 6) {
+                track.setTrigger(TriggerType.AUTO_START);
+            }
+
+            show.add(track);
+
+        }
+
+        nextIndex();
+        NoteCue cinCurtainCallNoteCue = (NoteCue) noteCue("Curtain Call", "Play Track 09 (next cue) for curtain call - Fade when all dancers line up")
+                .setClearNotes(true)
+                .setTrigger(TriggerType.AUTO_START);
+        show.add(cinCurtainCallNoteCue);
+
+        nextIndex();
+        MediaCue track09 = (MediaCue) mediaCue("Cinderella: Track 09", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Cinderella\\09 Track 09.mp3")
+                .setName("Track 09"));
+        show.add(track09);
+        Cues.popSubIndex();
+
+        // Hip-Hop 2/3
+        nextIndex();
+        MediaCue wtf = (MediaCue) mediaCue("Hip-Hop 2/3 (music): What U Workin' With", new MediaResource()
+                .setFile("C:\\Users\\Matt\\Music\\2022 Recital\\Trevor\\Hip-Hop 23 - What U Workin' With_.mp3")
+                .setStopAt(Duration.parse("PT1M32.55S"))
+                .setName("What U Workin' With"));
+        show.add(wtf);
+
+        return show;
+    }
 }

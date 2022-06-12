@@ -7,9 +7,13 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.mattie.osm.app.dmx.animation.DmxUniverse;
 import org.mattie.osm.model.dmx.DmxBuffer;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +34,20 @@ public class DmxController {
     @Getter
     private DmxBuffer dmxBuffer;
 
+    private ObservableMap<Integer, DmxUniverse> universeMap;
+
+    public ObservableMap<Integer, DmxUniverse> universeMapPropery() {
+        return universeMap;
+    }
+
+    @PostConstruct
+    public void init() {
+
+        // Create allowed DMX universes
+        universeMap.put(1, new DmxUniverse());
+
+    }
+
     @PreDestroy
     public void destroy() {
         if (executorService != null) {
@@ -38,6 +56,8 @@ public class DmxController {
     }
 
     public DmxController() {
+        universeMap = FXCollections.observableHashMap();
+
         dmxBuffer = new DmxBuffer();
         dmxEnabled.addListener((ov, oldVal, newVal) -> {
             if (newVal) {
